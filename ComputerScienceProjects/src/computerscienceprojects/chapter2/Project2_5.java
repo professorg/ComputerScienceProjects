@@ -35,6 +35,7 @@ public class Project2_5 {
             }
         }
         vel:{
+            
             while(true){
                 
                 System.out.print("Enter the objects velocity (in meters per second) as a double: ");
