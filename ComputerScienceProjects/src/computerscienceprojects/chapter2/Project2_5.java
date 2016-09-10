@@ -19,21 +19,34 @@ public class Project2_5 {
         double mass = 0;
         double velocity = 0;
         mass:{
-            System.out.print("Enter the objects mass (in kilograms) as a double: ");
-            try{
-                mass = scanner.nextDouble();
-            } catch (Exception e){
-                System.out.println("Incorrect input type.");
-                break mass;
+            
+            while(true){
+                
+                System.out.print("Enter the objects mass (in kilograms) as a double: ");
+                try{
+                    
+                    mass = scanner.nextDouble();
+                    break mass;
+                } catch (Exception e){
+                    
+                    System.out.println("Incorrect input type.");
+                    scanner.next();
+                }
             }
         }
         vel:{
-            System.out.print("Enter the objects velocity (in meters per second) as a double: ");
-            try{
-                velocity = scanner.nextDouble();
-            } catch (Exception e){
-                System.out.println("Incorrect input type.");
-                break vel;
+            while(true){
+                
+                System.out.print("Enter the objects velocity (in meters per second) as a double: ");
+                try{
+                    
+                    velocity = scanner.nextDouble();
+                    break vel;
+                } catch (Exception e){
+                    
+                    System.out.println("Incorrect input type.");
+                    scanner.next();
+                }
             }
         }
         System.out.println("The objects momentum is " + calculateMomentum(mass, velocity) + " kilogram meters per second.");
