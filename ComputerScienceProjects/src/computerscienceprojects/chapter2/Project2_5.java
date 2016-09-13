@@ -30,7 +30,7 @@ public class Project2_5 {
                 } catch (Exception e){
                     
                     System.out.println("Incorrect input type.");
-                    scanner.next();
+                    scanner.nextLine();
                 }
             }
         }
