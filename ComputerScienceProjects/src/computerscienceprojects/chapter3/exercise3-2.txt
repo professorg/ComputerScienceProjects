@@ -1,0 +1,70 @@
+Exercise 3.2
+#12-13, 14-15, 18-19
+
+12. x = 5, y = 10
+
+    a. x + y * 2
+     = 5 + 10 * 2
+     = 5 + 20
+     = 25
+
+    b. x - y + 2
+     = 5 - 10 + 2
+     = -5 + 2
+     = -3
+
+    c. (x + y) * 2
+     = (5 + 10) * 2
+     = (15) * 2
+     = 30
+
+    d. y % x
+     = 10 % 5
+     = 0
+
+13. syntax errors
+
+    a. a - * b + c
+         ^
+        minus followed by asterisk throws Syntax Error
+
+    b. - (a + b) * c )
+                     ^
+        mismatched parentheses
+
+    c. ()
+       ^
+       groups nothing; not a statement
+
+14. x = 4.5, y = 2
+    
+    a. x / y
+     = 4.5 / 2
+     = 2.25
+
+    b. y / x
+     = 2 / 4.5
+     = 0.44444...
+
+    c. x % y
+     = 4.5 % 2
+     = 0.5
+
+15. double x,y; int z
+
+    a. x = y // valid
+    b. x = y * z // valid
+    c. z = x * y // syntax error, lossy conversion from double to int
+
+18. x = "Wizard"; y = "Java"
+
+    a. y + x
+     = "JavaWizard"
+    b. y + y.length() + x
+     = "Java4Wizard"
+    c. y + "\n" + x + "\n"
+     = "Java
+       Wizard
+       "
+
+19. String myInfo = "Grant VanDomelen\n8222 NW Cresap Ln\n(503) 985-9715";
