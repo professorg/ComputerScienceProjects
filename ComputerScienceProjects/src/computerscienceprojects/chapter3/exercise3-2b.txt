@@ -16,4 +16,23 @@ p. 87 #3
      = (int) (9.0)
      = 9
 
-17. 
+17. double x, int y
+    y = (int) x;
+
+22. a. pricePerSquareInch // valid
+    b. student2 // valid
+    c. 2GuysFromLexington // invalid
+    d. PI // valid
+    e. allDone? // invalid
+
+
+1.  syntax errors - compile time
+    run-time errors - runtime
+    logic errors - during/after runtime
+
+2.  An example of a run-time error is when you divide by zero; the syntax will
+    be correct but the (presumably) variable that you divide by may be a zero.
+
+3.  a. x = y / 0 // run-time error
+    b. x + y = z // compile time error
+    c. area = length + width // logic error
