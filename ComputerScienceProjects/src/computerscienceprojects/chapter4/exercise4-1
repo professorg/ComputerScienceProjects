@@ -1,4 +1,8 @@
 Exercise 4.1
 p. 111 #3, p. 115 #1-7, p. 120 #1-5
 
-3.  
+3.  a. Swaps the values of x and y
+    b. Prints the average of a set of inputs, given the number of inputs
+    
+1.  A boolean
+2.  Curly braces group multiple statements to be executed from a single conditional
