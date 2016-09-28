@@ -1,0 +1,31 @@
+Barrons Chapter 1
+p. 77 #1,2,4,5,6,17,18,19
+
+1.  (B) I.  double x = 14.7
+        int y = x;
+
+2.  (E) \* This is not
+        a comment *\
+
+4.  (E) double answer = (double) (13 / 5)
+
+5.  int result = 13 - 3 * 6 / 4 % 3;
+               = 13 - 18 / 4 % 3
+               = 13 - 4 % 3
+               = 13 - 1
+               = (E) 12
+
+6.  2 + 3 * 12 / 7 - 4 + 8  // With addition/subtraction high precedence
+    = 5 * 12 / 3 + 8
+    = 5 * 12 / 11
+    = 5 * 1
+    = (C) 5
+
+17. 3D_hex =>
+    (A) 111101_bin
+
+18. (C) #0F13FF
+
+19. (D) 2^31 - 1
+
+// All correct

@@ -1,0 +1,58 @@
+Exercise 4.1
+p. 111 #3, p. 115 #1-7, p. 120 #1-5
+
+3.  a. Swaps the values of x and y
+    b. Prints the average of a set of inputs, given the number of inputs
+    
+    
+1.  A boolean
+
+2.  Curly braces group multiple statements to be executed from a single conditional
+
+3.  if statements run a block of code if a conditional is true;
+    if-else does the same PLUS runs a different block if it is not true
+
+4.  x=5, y=10
+    a. x<=10 -> true
+    b. x-2 != 0 -> true
+    c. x > y -> false
+5.  a. x > 0
+    b. seconds == 60
+    c. Math.round(a * a + b * b) == Math.round(c * c)
+    
+6.  a. 5
+    b. Not Equal
+
+7.  if (a >= b){
+        System.out.println(a);
+    } else {
+        System.out.println(b);
+    }
+    
+    
+1.  when the conditional is checked and is false
+
+2.  - while()
+    - conditional
+    - code block
+    
+3.  the while loop never executes
+
+4.  a. evaluates 2 ^ expo until greater than 10
+    b. computes the product of a stream of inputs. If input is -999, exits
+    
+5.  a.  for(int i=1;i<=10;i++){
+            System.out.println(pow(i,2));
+            System.out.println(pow(i,3));
+        }
+    b.  for(int i = 0; i < 10; i++) {
+            System.out.println(Math.random() * 11 + 1);
+        }
+    c.  Scanner scanner = new Scanner(System.in);
+        int age = 0;
+        while(age != 100) {
+            System.out.print("Enter a person's name: ");
+            scanner.nextLine();
+            age = scanner.nextInt();
+            scanner.next();
+        }
