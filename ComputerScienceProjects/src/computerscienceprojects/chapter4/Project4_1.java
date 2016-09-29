@@ -39,5 +39,18 @@ public class Project4_1 {
     Enter a second integer: 10
     Quotient: 2r2
     BUILD SUCCESSFUL (total time: 3 seconds)
+    
+    run:
+    Enter an integer: 10
+    Enter a second integer: 4
+    Quotient: 2r2
+    BUILD SUCCESSFUL (total time: 4 seconds)
+
+    run:
+    Enter an integer: 5
+    Enter a second integer: 5
+    Quotient: 1r0
+    BUILD SUCCESSFUL (total time: 2 seconds)
+
      */
 }
