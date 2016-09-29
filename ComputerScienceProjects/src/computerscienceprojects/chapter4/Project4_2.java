@@ -49,17 +49,17 @@ public class Project4_2 {
         if(largest == 0) {
             
             System.out.println("The triangle is " 
-                    + ((a * a - (b * b + c * c) < 0.5) ? "":"not") 
+                    + ((a * a - (b * b + c * c) < 0.000001) ? "":"not") 
                     + " a right triangle.");
         } else if(largest == 1) {
             
             System.out.println("The triangle is " 
-                    + ((b * b - (a * a + c * c) < 0.5) ? "":"not") 
+                    + ((b * b - (a * a + c * c) < 0.000001) ? "":"not") 
                     + " a right triangle.");
         } else {
             
             System.out.println("The triangle is " 
-                    + ((c * c - (a * a + b * b) < 0.5) ? "":"not ") 
+                    + ((c * c - (a * a + b * b) < 0.000001) ? "":"not ") 
                     + "a right triangle.");
         }
     }
@@ -77,5 +77,19 @@ public class Project4_2 {
     Enter a triangle side length: 6
     The triangle is not a right triangle.
     BUILD SUCCESSFUL (total time: 7 seconds)
+    
+    run:
+    Enter a triangle side length: 1.5
+    Enter a triangle side length: 5.2
+    Enter a triangle side length: 2.2
+    The triangle is not a right triangle.
+    BUILD SUCCESSFUL (total time: 10 seconds)
+    
+    run:
+    Enter a triangle side length: 1.5
+    Enter a triangle side length: 2
+    Enter a triangle side length: 2.5
+    The triangle is a right triangle.
+    BUILD SUCCESSFUL (total time: 8 seconds)
      */
 }
