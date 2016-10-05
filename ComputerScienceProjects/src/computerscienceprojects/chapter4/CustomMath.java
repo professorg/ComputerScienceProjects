@@ -41,9 +41,9 @@ public class CustomMath {
                     
                     for (int j = 0; j < i+1; j++) {
                         
-                        base = sqrt(base);
+                        tmp = sqrt(base);
                     }
-                    out *= base;
+                    out *= tmp;
                 }
             }
             
