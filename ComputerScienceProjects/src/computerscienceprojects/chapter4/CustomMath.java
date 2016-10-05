@@ -13,7 +13,7 @@ public class CustomMath {
 
     public static void main(String[] args) {
 
-        System.out.println(pow(4,1.5));
+        System.out.println(pow(8,1.0/3.0));
     }
 
     public static double pow(double base, double exp) {
@@ -33,7 +33,7 @@ public class CustomMath {
             
             double out = pow(base, (int) exp);
             
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 64; i++) {
                 
                 if(((int)((exp - (int) exp) * pow(2,i+1)) & 1) == 1) {
                     
@@ -41,7 +41,7 @@ public class CustomMath {
                     
                     for (int j = 0; j < i+1; j++) {
                         
-                        tmp = sqrt(base);
+                        tmp = sqrt(tmp);
                     }
                     out *= tmp;
                 }
@@ -56,7 +56,7 @@ public class CustomMath {
         double n1 = n;
         double n2 = n1 / n;
 
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < 64; i++) {
 
             n2 = n / n1;
             n1 = (n1 + n2) / 2;
