@@ -1,0 +1,35 @@
+Exercise 4.2
+p. 123 4.6 #1, 2, 3
+p. 126 4.7 #1, 2
+p. 130 4.8 #2(b) only
+p. 137 4.9 #1
+p. 145 Ch Rev: : 1-4
+
+4.6
+
+    1.  a. Prints 2^n for n 1 to limit
+        b. Evaluates base^expo through a for loop
+
+    2.  a.
+            for(int base = 0; i < 10; i++) {
+
+                System.out.println(Math.pow(base,2));
+                System.out.println(Math.pow(base,3));
+            }
+
+        b.
+            Strings str = "";
+            for(int i = 10; i > 0; i--){
+                
+                str += i + " ";
+            }
+
+    3.  a.
+            Scanner reader = new Scanner(System.in);
+
+            int i = 1;
+            while(i <= 5) {
+                
+                
+                i++;
+            }
