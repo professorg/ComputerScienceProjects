@@ -30,6 +30,113 @@ p. 145 Ch Rev: : 1-4
             int i = 1;
             while(i <= 5) {
                 
-                
+                System.out.print("Enter an integer: ");
+                int number = reader.nextInt();
+                System.out.println(Math.pow(number,2));
                 i++;
+            }
+        
+        b.
+            int base = 2;
+
+            int count = expo;
+            while(count > 1){
+                
+                base = base * base;
+                count--;
+            }
+
+4.7
+
+    1.  a. Prints all even numbers from 1 to limit.
+        b. Picks a random number, input from player guessing number. If they are
+            equal, end the loop. If not, try again.
+    
+    2.  a.
+            for(int i = 0; i < 10; i++){
+                
+                System.out.println(Math.pow((2*i + 1), 2));
+                System.out.println(Math.pow((2*i + 1), 3));
+            }
+
+        b.
+            String s = "";
+
+            for(int i = 10; i > 0; i--) {
+                
+                s += 2*i;
+            }
+
+4.8
+    
+    2.  b.
+            Scanner reader = new Scanner(new File("path/to/file.txt"));
+            
+            while(reader.hasNextInt()) {
+            
+                int a = reader.nextInt();
+                int b = reader.nextInt();
+
+                System.out.println(Math.max(a,b));
+            }
+
+4.9
+
+    1.  a. The loop, which should be "inclusive", does not include the limit.
+        b. number is never equal to ten, so the loop never terminates. Also,
+            only prints 5 at most; number represents the number itself and the
+            tenth odd number is well over ten.
+
+Review 1-4
+
+    1.  x = 19, y = 2
+        A. x <= y : false
+        B. x * 2 > y : true
+        C. x - 1 == y * 9 : true
+        D. x < y < 25 : incorrect
+        E. x * 2 != y : true
+
+    2.  A.
+            if( x > y )
+                System.out.println("greater");
+            else if( x < y )
+                System.out.println("less");
+            else
+                System.out.println("equal");
+               
+        B.
+            x += 10
+            if( y < 0 )
+                System.out.println(x);
+
+        C.
+            if( x > 90)
+                System.out.println(A);
+            else if ( x > 80 )
+                System.out.println(B);
+            else
+                System.out.println(C);
+
+    3.  A. yes
+        B. no, assignment (=) operator used instead of equality (==)
+        C. no, missing parentheses
+
+    4.  A.
+            for(int i = Math.max(x,0); i <= y; i++) {
+                
+                System.out.println(i);
+            }
+
+        B.
+            int out = 1;
+            for(int i = x; i <= y; i++) {
+                
+                out *= Math.pow(i,2);
+            }
+            System.out.println(out);
+
+        C.
+            for(int i = y; i >= 0; i--) {
+                
+                System.out.println(i);
             }
