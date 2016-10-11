@@ -1,1 +1,22 @@
+Barrons Chapter 1
+p. 78
+#7,8,9,15,16,21,22,25,26
 
+7.  (B) It may evaluate to false for some values of x.
+
+8.  (D) There is a round-off error in calculating the pow and sqrt functions.
+
+9.  (D) 22 is negative
+
+15. (A) I and II are exactly equivalent for all input values n
+
+16. (D) The code will always process a value that is not on the list.
+
+21. (B) 6144
+
+22. (E) nRemaining is needed as the left-hand side operand for integer division.
+        Correct answer - (C)
+
+25. (D) II and III only
+
+26. (D) II and III only
