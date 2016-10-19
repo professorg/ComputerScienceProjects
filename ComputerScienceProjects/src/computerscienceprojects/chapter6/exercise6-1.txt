@@ -1,0 +1,63 @@
+Exercise 6.1
+p. 187 #1-5
+p. 197 #1-11
+
+
+p. 187
+
+1.  A class is a group of variables and methods that defines an object, but an
+    object is uniquely stored and has its own state variables.
+
+2.  When an object is no longer referenced by a variable, it is deleted from
+    memory and no longer occupies the memory it had previously.
+
+3.  An object has behavior, defined by the methods in its class, its state
+    defined by its instance variables, and its identity: a unique identifier
+    to distinguish objects of the same class.
+
+4.  A client sends the server messages (knowing only the list of supported
+    methods), and a server hides the implementation of the methods.
+
+5.  The interface of a class is a list of method names, but without their
+    implementations.
+
+
+p. 197
+
+1.  Mutators are also called "Setters", and set the value of a (usually private)
+    variable. Accessors, or "Getters", returns the value of a variable. For
+    example, Vector2.getX() would get the Vector's x value. Vector2.setX(1)
+    would set the x to one.
+
+2.  The 'public' modifier is used when classes and methods outside of the class
+    it's defined in should be able to access the method or variable. The
+    'private' modifier hides the variable, making it inaccessible from outside
+    the class.
+
+3.  A constructor initializes a new object and its instance variables.
+    (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+
+4.  If a toString method is not defined, it defaults to <class>@<memory address>
+    which is unhelpful to most people.
+
+5.  Two variables may contain the same memory address referencing a single
+    object.
+
+6.  A primitive type stores a value in bytes. A reference type stores the
+    memory address of an object stored in memory.
+
+7.  The null value means that the variable does not reference any object.
+
+8.  A null pointer exception occurs when one tries to access a variable or
+    method on a null-reference variable. For example,
+
+    String a = null;
+    String b = a.substring(5);
+
+9.  A default constructor takes no arguments and initializes each variable with
+    their default values.
+
+10. A new object with no initialized instance variables is created.
+
+11. A constructor expecting another object of the same class might make a copy
+    of the object at a different memory address.
