@@ -1,0 +1,41 @@
+Exercise 6.2
+p. 207 #1,3,4
+p. 212-213 #1,2,3
+
+p. 207
+
+1.  Formal parameters are the expected parameters that define the method, and
+    actual parameters are the parameters passed when calling the method.
+
+3.  public int sum(int a, int b) { a+b }
+
+4.  Local variables are used when the variable needs to be used only once or a
+    few times inside a code block.
+
+p. 212-213
+
+1.  An instance variable has the same lifetime as the object it is attached to,
+    a local variable is only for a single code block, and a
+    parameter is used until the method call returns or ends.
+
+2.  Two variables with the same name reference different objects or primitives.
+    If you mean to reference one instead of the other, for example in a
+    constructor, it could be bad:
+        
+        int myNumber;
+        
+        public MyObject(int myNumber) {
+            myNumber = myNumber;
+        }
+
+3.  a.
+        instance vars: a,b
+        parameters: x,y
+        local variables: c,d
+    b.
+        instance: used anywhere in the class.
+        parameters, locals: only used in the Mutator.
+
+    c.
+        instance: destroyed with the Object
+        parameters and locals: destroyed/dereferenced when method ends
