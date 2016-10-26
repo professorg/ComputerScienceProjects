@@ -5,6 +5,11 @@
  */
 package computerscienceprojects.other.misc.javafxlogin;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.security.MessageDigest;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -54,37 +59,106 @@ public class Main extends Application {
         
         final Text feedback = new Text();
         
-        HBox hbtn = new HBox(10);
-        hbtn.setAlignment(Pos.BOTTOM_RIGHT);
-        
         Label usernameLabel = new Label("Username: ");
         grid.add(usernameLabel, hpos++, vpos);          // 0,1
         
         TextField usernameField = new TextField();
         grid.add(usernameField, hpos--, vpos++);        // 1,1
+        usernameField.setPrefWidth(250);
         
         Label passwordLabel = new Label("Password: ");
         grid.add(passwordLabel, hpos++, vpos);          // 0,2
         
         TextField passwordField = new TextField();
         grid.add(passwordField, hpos--, vpos++);        // 1,2
+        passwordField.setPrefWidth(250);
         
-        Button submit = new Button();
-        submit.setText("Login");
-        submit.setOnAction((ActionEvent event) -> {
+        HBox hbtnRegister = new HBox(10);
+        hbtnRegister.setAlignment(Pos.BOTTOM_RIGHT);
+        
+        HBox hbtnLogin = new HBox(10);
+        hbtnLogin.setAlignment(Pos.BOTTOM_RIGHT);
+        
+        Button register = new Button();
+        register.setText("Register");
+        register.setOnAction((ActionEvent event) -> {
             
             feedback.setFill(Color.FIREBRICK);
-            feedback.setText("Hello, world!");
+            String text = register(usernameField.getText(),
+                    passwordField.getText());
+            feedback.setText(text);
         });
         
-        hbtn.getChildren().add(submit);                 // 0,3
+        Button login = new Button();
+        login.setText("Login");
+        login.setOnAction((ActionEvent event) -> {
+            
+            feedback.setFill(Color.FIREBRICK);
+            String text = login(usernameField.getText(),
+                    passwordField.getText());
+            feedback.setText(text);
+        });
         
-        grid.add(hbtn, ++hpos, vpos++);                 // 1,4
-        grid.add(feedback, hpos--, vpos++);             // 1,5
+        hbtnRegister.getChildren().add(register);
+        hbtnLogin.getChildren().add(login);
         
-        Scene scene = new Scene(grid, 400, 300);
+        grid.add(hbtnLogin, hpos++, vpos);              // 0,3
+        grid.add(hbtnLogin, hpos, vpos++);              // 1,3
+        grid.add(feedback, hpos--, vpos++);             // 1,4
+        
+        Scene scene = new Scene(grid, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
         
+    }
+    
+    private static String register(String username, String password) {
+        
+        if(username.equals("") || password.equals("")) {
+            
+            return "Username or password must not be blank.";
+        }
+        try {
+            
+            FileWriter fw = new FileWriter(new File("outputs/database.txt"));
+            PrintWriter writer = new PrintWriter(fw);
+            writer.println(username + ":" + hash(password));
+            return "Login successful.";
+        } catch(IOException e) {
+            
+            return "Could not create file.";
+        }
+    }
+    
+    private static String login(String username, String password) {
+        
+        return "";
+    }
+    
+    private static String hash(String s) {
+        
+        try {
+            
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(s.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+            
+            for (int i = 0; i < hash.length; i++) {
+                
+                String hex = Integer.toHexString(0xFF & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            
+            return hash.toString();
+        } catch (Exception ex) {
+            
+            throw new RuntimeException(ex);
+        }
+    }
+    
+    private String hash(String s, String salt) {
+        
+        return hash(s + salt);
     }
 }
