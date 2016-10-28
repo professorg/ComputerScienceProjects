@@ -125,8 +125,26 @@ public class Main extends Application {
         try {
 
             PrintWriter writer;
+            Scanner scanner;
             File f = new File("database.txt");
-            FileWriter fw = new FileWriter(f);
+            try {
+                scanner = new Scanner(f);
+                while(scanner.hasNextLine()) {
+                    
+                    if(username.equals(scanner.nextLine().split(":")[0])){
+                        
+                        return "Username taken.";
+                    }
+                }
+            } catch (FileNotFoundException e) {
+
+                try {
+                    new FileWriter(f).close();
+                } catch (IOException ex) {
+                    return "Could not create file.";
+                }
+            }
+            FileWriter fw = new FileWriter(f, true);
             writer = new PrintWriter(fw);
             writer.println(username + ":" + hash(password));
             writer.close();
