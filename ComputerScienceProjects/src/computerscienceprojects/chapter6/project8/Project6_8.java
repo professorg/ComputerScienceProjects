@@ -1,10 +1,10 @@
-package computerscienceprojects.chapter6.rectangle;
+package computerscienceprojects.chapter6.project8;
 
 // A frame with an empty panel
 import javax.swing.*;
 import java.awt.*;
 
-public class GUIWindow {
+public class Project6_8 {
 
     public static void main(String[] args) {
         
@@ -12,7 +12,7 @@ public class GUIWindow {
         theGUI.setTitle("GUI Program");
         theGUI.setSize(600, 400);
         theGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ColorPanel panel = new ColorPanel(Color.white);
+        RectPanel panel = new RectPanel(Color.white);
         Container pane = theGUI.getContentPane();
         pane.setLayout(new GridLayout(1, 1));
         pane.add(panel);

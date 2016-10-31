@@ -122,6 +122,9 @@ public class Main extends Application {
 
             return "Username or password must not be blank.";
         }
+        if(username.contains(":")) {
+            return "Invalid username.";
+        }
         try {
 
             PrintWriter writer;

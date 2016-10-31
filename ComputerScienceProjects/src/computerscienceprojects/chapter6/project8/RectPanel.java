@@ -1,4 +1,4 @@
-package computerscienceprojects.chapter6.rectangle;
+package computerscienceprojects.chapter6.project8;
 
 // Example 6.5: Displays a circle and a filled circle
 // Allows the user to drag a circle to another position
@@ -6,14 +6,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ColorPanel extends JPanel {
+public class RectPanel extends JPanel {
 
     private Rectangle r1, r2;
     private Rectangle selRect;
 
     private int x, y;               // Used to track mouse coordinates  
 
-    public ColorPanel(Color backColor) {
+    public RectPanel(Color backColor) {
         setBackground(backColor);
         r1 = new Rectangle(200, 100, 50, 100, Color.red);
         r2 = new Rectangle(100, 100, 100, 250, Color.blue);
