@@ -33,7 +33,9 @@ public class Rectangle {
 
    public boolean containsPoint(int x, int y){
        
-       return (x >= this.x &&
+       int out = 0;
+       
+        return (x >= this.x &&
                x <= this.x + w &&
                y >= this.y &&
                y <= this.y + h);
