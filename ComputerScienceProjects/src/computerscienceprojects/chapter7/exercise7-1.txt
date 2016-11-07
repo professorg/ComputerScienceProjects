@@ -1,0 +1,91 @@
+Exercise 7.1
+p. 236 #1,2,5
+p. 244 #1
+p. 248 #1,2
+p. 252 #1,2
+p. 254 #1,2
+
+
+p. 236
+
+1.
+    P   Q   !( (P||Q) && (P&&Q) )
+    F   F   T
+    F   T   T
+    T   F   T
+    T   T   F
+
+2.  A = true, B = false
+    a. A || B    -> true
+    b. A && B    -> false
+    c. A && !B   -> true
+    d. !(A || B) -> false
+
+5.  x >= min && x <= max
+
+
+p. 244
+
+1.  a. -1, 0, 1
+    b. -1, 0, 1, 100, 101
+
+
+p. 248
+
+1.
+    time is before noon     the day is Monday   action
+    F                       F                   throw a Frisbee in the quad
+    F                       T                   throw a Frisbee in the quad
+    T                       F                   go to gym class
+    T                       T                   take the computer science quiz
+
+2.  In a nested if statement, the inside condition is tested only if the outer
+    condition evaluated true. In a multiway if statement, multiple conditions
+    are tested in parallel.
+
+
+p. 252
+
+1.  The first condition tests if the income is > 10000. If that is true, the
+    next two are not tested when they should be. The only two possible rates are
+    0.10 and 0.0 with this setup.
+
+2. 
+    if(income <= 10000)         // (-infinity, 10000]
+        rate = 0.0;
+    else if(income <= 20000)    // (10000, 20000]
+        rate = 0.10;
+    else if(income <= 50000)    // (20000, 50000]
+        rate = 0.18;
+    else                        // (50000, infinity)
+        rate = 0.40;
+
+
+p. 254
+
+1.
+    a. output:
+        1 2 3 1 2 3 1 2 3 
+    b. output:
+        1 2 3 
+        1 2 3 
+        1 2 3 
+
+2.
+    a.
+        for(int i = 1; i <= 25; i++) {
+
+            System.out.print(i);
+            if(i % 5 == 0) System.out.println("");
+            else System.out.print(" ");
+        }
+    b.
+        for(int i = 1; i <= 5; i++) {
+            
+            for(int j = 1; j <= 5; j++) {
+                
+                System.out.print((i + j) + " ");
+            }
+            System.out.println("");
+        }
+    
