@@ -5,8 +5,6 @@
  */
 package computerscienceprojects.other;
 
-import java.util.Scanner;
-
 /**
  *
  * @author gvandomelen19

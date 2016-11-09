@@ -1,0 +1,26 @@
+Loop Practice
+
+p. 11-4 #2,5,6,9
+p. 11-6 #4-7
+
+
+p. 11-4
+
+2.  7
+
+5.  Error; b not defined
+
+6.  110.01
+
+9.  6
+
+
+p. 11-6
+
+4.  E. Both B and D
+
+5.  D. Nothing, it's an endless loop
+
+6.  A. 5 6
+
+7.  D. 4039
