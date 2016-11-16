@@ -18,7 +18,7 @@ public class Project7_1 {
         int guesses = 0;
         int random = (int)(Math.random()*100.0 + 1);
         Scanner scanner = new Scanner(System.in);
-        System.out.print("I'm thinking of a number between 1 and 100. ");
+        System.out.println("I'm thinking of a number between 1 and 100. ");
         while(true){
             
             guesses++;
@@ -32,4 +32,34 @@ public class Project7_1 {
                 + " guesses.");
         
     }
+    
+    /*
+    run:
+    I'm thinking of a number between 1 and 100.
+    50
+    No, the number is more. Guess again. 
+    75
+    No, the number is less. Guess again. 
+    63
+    No, the number is more. Guess again. 
+    69
+    No, the number is more. Guess again. 
+    72
+    Correct! You guessed the number after 5 guesses.
+    
+    run:
+    I'm thinking of a number between 1 and 100. 
+    50
+    No, the number is less. Guess again. 
+    25
+    No, the number is more. Guess again. 
+    38
+    No, the number is more. Guess again. 
+    44
+    No, the number is less. Guess again. 
+    41
+    No, the number is more. Guess again. 
+    42
+    Correct! You guessed the number after 6 guesses.
+    */
 }
