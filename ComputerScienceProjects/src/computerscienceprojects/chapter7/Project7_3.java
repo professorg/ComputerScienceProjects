@@ -36,11 +36,42 @@ public class Project7_3 {
         
         if(grade < 60) {
             
+            s += "F";
+        } else if(grade < 70) {
             
+            s += "D";
+            if(grade < 62) s+= "-";
+            if(grade > 65) s+= "+";
+        } else if(grade < 80) {
+            
+            s += "C";
+            if(grade < 72) s+= "-";
+            if(grade > 75) s+= "+";
+        } else if(grade < 90) {
+            
+            s += "B";
+            if(grade < 82) s+= "-";
+            if(grade > 85) s+= "+";
+        } else {
+            
+            s += "A";
+            if(grade < 92) s+= "-";
+            if(grade > 95) s+= "+";
         }
-        else if(grade < 62) {
-            
-            
-        }
+        
+        System.out.println("You have a(n) " + s + " in the class");
     }
+    /*
+    run:
+    Enter your grade percent (0-100) in the class: 50
+    You have a(n) F in the class
+    
+    run:
+    Enter your grade percent (0-100) in the class: 71
+    You have a(n) C- in the class
+    
+    run:
+    Enter your grade percent (0-100) in the class: 99
+    You have a(n) A+ in the class
+    */
 }
