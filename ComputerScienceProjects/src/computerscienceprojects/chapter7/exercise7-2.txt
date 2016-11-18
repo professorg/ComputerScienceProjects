@@ -1,0 +1,50 @@
+Exercise 7.2
+p. 269 #1,2
+p. 279 #3,6
+
+1.
+    a. 3
+    b. 8
+    c. rain in Spain falls mainly on the plain
+    d. rain
+    e.
+        The
+        rain
+        in
+        Spain
+        falls
+        mainly
+        on
+        the
+        plain
+
+2.  a.
+        while(str.indexOf(' ') != -1) {
+            
+            str.replace(' ', '\n');
+        }
+    b.
+        int a = str.indexOf("the");
+    c.
+        int a = str.indexOf("the", (int)(str.length()/2.0 + 0.5));
+    d.
+        int count = 0;
+        int index = 0;
+        while(true) {
+            
+            if(str.indexOf("the", index) == -1) break;
+            count++;
+            index = str.indexOf("the", index) + 1;
+        }
+
+3.  P = true
+    Q = false
+    P & !Q = true & !false = true & true
+        = true
+
+6.  for(int i = 0; i < 10; i++) {
+        for(int j = 0; j < 10; j++) {
+            System.out.print('*');
+        }
+        System.out.println();
+    }

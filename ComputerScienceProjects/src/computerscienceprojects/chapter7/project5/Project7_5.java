@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package computerscienceprojects.chapter7;
+package computerscienceprojects.chapter7.project5;
 
 import java.util.Scanner;
 
@@ -27,22 +27,21 @@ public class Project7_5 {
     
     private static int findGCD(int n1, int n2) {
         
-        if(n1 < n2) {
+        while(!(n2 == 0)) {
             
-            System.out.println("GCD(" + n1 + ", " + n2 + ") = GCD(" + n2 + ", "
-                    + n1 + ")");
-            return findGCD(n2, n1);
+            if(n1 < n2) {
+                
+                int tmp = n1;
+                n1 = n2;
+                n2 = tmp;
+            }
+            
+            int rem = n1 % n2;
+            n1 = n2;
+            n2 = rem;
         }
         
-        System.out.println(n1 + "%" + n2 + " = " + n1 % n2 + ", so ");
-        System.out.print("GCD(" + n1 + ", " + n2 + ") = ");
-        n1 %= n2;
-        System.out.println("GCD(" + n2 + ", " + n1 + ")");
-        if(n1 == 0) {
-            
-            return n2;
-        }
-        return findGCD(n2, n1);
+        return n1;
     }
     
     /*

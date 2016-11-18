@@ -13,5 +13,17 @@ public class Testing {
 
     public static void main(String[] args) {
         
+        String str = "The thethe the the the It's the kind of the";
+        String str2 = "This has no things spelled T-H-E";
+        
+        int count = 0;
+        int index = 0;
+        while(true) {
+            
+            if(str.indexOf("the", index) == -1) break;
+            count++;
+            index = str.indexOf("the", index) + 1;
+        }
+        System.out.println(count);
     }
 }

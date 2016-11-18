@@ -115,7 +115,7 @@ public class Project7_2 {
     private static int randrange(int a, int b) {
         
         int diff = Math.abs(b-a);
-        return (int) (Math.random() * diff + Math.min(a, b));
+        return (int) (Math.random() * (diff+1) + Math.min(a, b));
     }
     
     /*
