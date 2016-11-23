@@ -12,7 +12,7 @@ public class Project7_10{
       theGUI.setTitle("GUI Program");
       //theGUI.setSize(300, 200);
       theGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      ColorPanel panel = new ColorPanel(Color.white, 300, 200);
+      CirclePanel panel = new CirclePanel(Color.white, 600, 400);
       Container pane = theGUI.getContentPane();
       pane.add(panel);
       theGUI.pack();
