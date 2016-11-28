@@ -1,11 +1,12 @@
-package computerscienceprojects.chapter7.project10;
+package computerscienceprojects.chapter7.project11;
 
 // A frame with an empty panel
 
+import computerscienceprojects.chapter7.project10.CirclePanel;
 import javax.swing.*;
 import java.awt.*;
 
-public class Project7_10 {
+public class Project7_11 {
 
    public static void main(String[] args){
       JFrame theGUI = new JFrame();
