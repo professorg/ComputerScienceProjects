@@ -1,0 +1,21 @@
+Barron's Chapter 1
+p. 77
+#3,10-14,20,23,24
+
+3.  (D) statement2, but not statement1, will be executed
+
+10. (A) x = 30  y = 90
+
+11. (C) !(A || B || C)
+
+12. (D) a > b and b > 0
+
+13. (A) c < a is false
+
+14. (C) Either /* statement 1 */ or /* statement 2 */ will be executed.
+
+20. (D) 4 12
+
+23. (B)
+
+24. (E) I, II, and III
