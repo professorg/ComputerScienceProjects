@@ -11,4 +11,7 @@ package computerscienceprojects.other.misc.raycast;
  */
 public class Raycast {
     
+    public static void main(String[] args) {
+        
+    }
 }
