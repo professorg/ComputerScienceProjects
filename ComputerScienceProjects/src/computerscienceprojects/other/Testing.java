@@ -13,17 +13,16 @@ public class Testing {
 
     public static void main(String[] args) {
         
-        String str = "The thethe the the the It's the kind of the";
-        String str2 = "This has no things spelled T-H-E";
-        
-        int count = 0;
-        int index = 0;
-        while(true) {
-            
-            if(str.indexOf("the", index) == -1) break;
-            count++;
-            index = str.indexOf("the", index) + 1;
+        int[] bids = {601};
+        System.out.println(priceIsRight(bids, 600));
+    }
+    
+    public static int priceIsRight(int[] bids, int price) {
+        int closestIndex = -1;
+        for(int i = 0; i < bids.length; i++) {
+            if(bids[i] < price
+               && (closestIndex < 0 || price - bids[i] <= price - bids[closestIndex])) closestIndex = i; 
         }
-        System.out.println(count);
+        return closestIndex > 0 ? bids[closestIndex] : -1;
     }
 }
