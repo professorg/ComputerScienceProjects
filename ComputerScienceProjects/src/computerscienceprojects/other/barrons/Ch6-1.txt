@@ -1,0 +1,40 @@
+Barron's Chapter 6
+p. 255
+#1-6,9-18
+
+1.  (E) I, II, and III
+
+2.  (C) whenever arr contains at least one negative integer.
+
+3.  (E) A run-time error will occur.
+
+4.  (A) 6, 4, 2
+
+5.  (C) k - 1
+
+6.  (B) 2 4
+        Correct answer: C
+
+9.  (D) System.out.println(a.getName());
+
+10. (B) II only
+
+11. (C) System.out.println(student.getAddress().getName());
+
+12. (E) II and III only
+
+13. (B) new Ticket(theRow, theSeat, thePrice);
+
+14. (C) for (Ticket t : tickList)
+            total += t.getPrice();
+
+15. (A) Transaction[] listOfSales = new Transaction[NUMSALES];
+
+16. (D) I and II only
+        Correct answer: B
+
+17. (A) v[0]..v[vIndex-1] and w[0]..w[wIndex-1] contain no common value,
+        vIndex <= N and wIndex <= M
+
+18. (B) Each book in the bookList array will have its checkout status changed, as
+        intended.
