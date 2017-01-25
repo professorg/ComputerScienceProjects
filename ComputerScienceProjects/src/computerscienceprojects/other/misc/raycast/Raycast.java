@@ -63,6 +63,8 @@ public class Raycast {      // Based on @link http://lodev.org/cgtutor/files/ray
         
         while(true) {
             
+            long stop = System.nanoTime() + 1000000 / 60;
+
             for (int x = 0; x < SCREEN_WIDTH; x++) {
                 
                 double cameraX = 2 * x / (double) SCREEN_WIDTH - 1;
@@ -154,6 +156,8 @@ public class Raycast {      // Based on @link http://lodev.org/cgtutor/files/ray
                 
                 frame.repaint();
             }
+            
+            while (System.nanoTime() < stop);
         }
     }
 }
