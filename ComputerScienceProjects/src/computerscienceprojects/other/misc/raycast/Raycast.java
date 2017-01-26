@@ -40,10 +40,15 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
     };
     
-    public static final int SCREEN_WIDTH = 1200;
-    public static final int SCREEN_HEIGHT = 800;
+    public static final int SCREEN_WIDTH = 600;
+    public static final int SCREEN_HEIGHT = 400;
     
     public static void main(String[] args) {  
+        
+        boolean fog = true;
+        boolean sideShift = false;
+        boolean fHeld = false;
+        boolean gHeld = false;
         
         double posX = 1.5;    // Initial player pos
         double posY = 1.5;
@@ -155,10 +160,23 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
                     
                 }
                 
-                if (side == 1) {
-                    int r = color.getRed() / 2;
-                    int g = color.getGreen() / 2;
-                    int b = color.getBlue() / 2;
+                colorshift: {
+                    int r = color.getRed();
+                    int g = color.getGreen();
+                    int b = color.getBlue();
+                    sideshift: if (sideShift) {
+                        if (side == 1) {
+                            r /= 2;
+                            g /= 2;
+                            b /= 2;
+                        }
+                    }
+                    fog: if (fog) {
+                        // break fog;
+                        r = (int) Math.max(0, Math.min(255, r - perpWallDist * 20));
+                        g = (int) Math.max(0, Math.min(255, g - perpWallDist * 20));
+                        b = (int) Math.max(0, Math.min(255, b - perpWallDist * 20));
+                    }
                     color = new Color(r,g,b);
                 }
                                 
@@ -213,6 +231,18 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
                 double oldPlaneX = planeX;
                 planeX = planeX * Math.cos(rotSpeed) - planeY * Math.sin(rotSpeed);
                 planeY = oldPlaneX * Math.sin(rotSpeed) + planeY * Math.cos(rotSpeed);
+            }
+            if (!fHeld && keys.get(KeyEvent.VK_F) != null) {
+                fog = !fog;
+                fHeld = true;
+            } else {
+                fHeld = keys.get(KeyEvent.VK_F) != null;
+            }
+            if (!gHeld && keys.get(KeyEvent.VK_G) != null) {
+                sideShift = !sideShift;
+                gHeld = true;
+            } else {
+                gHeld = keys.get(KeyEvent.VK_G) != null;
             }
             if (keys.get(KeyEvent.VK_ESCAPE) != null) System.exit(0);
             
