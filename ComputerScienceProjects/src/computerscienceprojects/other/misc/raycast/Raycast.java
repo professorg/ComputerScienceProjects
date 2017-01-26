@@ -27,7 +27,7 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,1,0,0,0,0,4,4,4,0,0,0,1},
         {1,0,0,0,1,0,0,0,0,4,0,4,0,0,0,1},
-        {1,0,0,0,1,1,0,0,0,4,4,4,0,0,0,1},
+        {1,0,0,0,1,1,0,0,0,4,0,4,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,1,2,1,0,0,0,0,0,0,0,1},
@@ -47,8 +47,10 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
         
         boolean fog = true;
         boolean sideShift = false;
+        boolean minimap = false;
         boolean fHeld = false;
         boolean gHeld = false;
+        boolean mHeld = false;
         
         double posX = 1.5;    // Initial player pos
         double posY = 1.5;
@@ -197,13 +199,20 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
             now = System.nanoTime();
             double frameTime = (now - then) / 1000000000.0;    // delta t in seconds
             
-            drawMinimap(img, 0, 0, 10.0, posX, posY, dirX, dirY);
+            if(minimap) drawMinimap(img, 0, 0, 10.0, posX, posY, dirX, dirY);
                 
             panel.repaint();
             
             double moveSpeed = frameTime * 5.0;
             double rotSpeed = frameTime * 3.0;
             
+            if (keys.get(KeyEvent.VK_CONTROL) != null) {
+                
+                moveSpeed /= 2;
+            } else if (keys.get(KeyEvent.VK_SHIFT) != null) {
+                
+                moveSpeed *= 2;
+            }
             if (keys.get(KeyEvent.VK_W) != null) {
                 
                 if (map[(int) (posX + dirX * moveSpeed)][(int) posY] == 0) posX += dirX * moveSpeed;
@@ -243,6 +252,12 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
                 gHeld = true;
             } else {
                 gHeld = keys.get(KeyEvent.VK_G) != null;
+            }
+            if (!mHeld && keys.get(KeyEvent.VK_M) != null) {
+                minimap = !minimap;
+                mHeld = true;
+            } else {
+                mHeld = keys.get(KeyEvent.VK_M) != null;
             }
             if (keys.get(KeyEvent.VK_ESCAPE) != null) System.exit(0);
             
