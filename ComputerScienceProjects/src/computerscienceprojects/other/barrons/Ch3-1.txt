@@ -1,0 +1,41 @@
+Barron's Chapter 3
+p. 150
+#1-19
+
+1.  (D) 4
+
+2.  (B) I and II only
+
+3.  (D) super(acctBalance);
+        interestRate = rate;
+
+4.  (A) I only
+
+5.  (C) super.withdraw(amount);
+        if (getBalance() < MIN_BALANCE)
+            super.withdraw(FEE);
+
+6.  (B) method overriding
+
+7.  (E) s.addInterest();
+
+8.  (D) withdraw
+
+9.  (C) ((CheckingAccount) c).deposit(800);
+
+10. (D) I, II, and III
+
+11. (E) II and III only
+
+12. (E) All of the methods in both an abstract class and an interface are public.
+
+13. (A) printName(parrot2);
+        printBirdCall((Parrot) bird2);
+
+14. (B) method overriding.
+
+15. (E) I, II, and III
+
+16. (E) 4
+
+17. (E) Since Solid is abstract and its subclasses are nonabstract, polymorphism no longer applies when these classes are used in a program.

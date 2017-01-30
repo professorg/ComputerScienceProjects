@@ -52,8 +52,11 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
         boolean gHeld = false;
         boolean mHeld = false;
         
+        int jumpCount = 0;
+        
         double posX = 1.5;    // Initial player pos
         double posY = 1.5;
+        double posZ = 0.0;
         double dirX = -1;   // Initial look direction
         double dirY = 0;
         double planeX = 0;  // Camera plane
@@ -144,10 +147,14 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
                 // ////System.out.println("Perpendicular wall distance: " + perpWallDist);
                 
                 int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
-                if (drawStart < 0) drawStart = 0;
                 int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
-                if (drawEnd >= SCREEN_HEIGHT) drawEnd = SCREEN_HEIGHT - 1;
                 
+                drawStart = (int) (drawStart * (1 - posZ) + SCREEN_HEIGHT / 2 * posZ);
+                drawEnd = (int) (drawEnd * (1 - posZ) + (SCREEN_HEIGHT - 1) * posZ);
+                
+                if (drawStart < 0) drawStart = 0;
+                if (drawEnd >= SCREEN_HEIGHT) drawEnd = SCREEN_HEIGHT - 1;
+
                 Color color;
                 switch (map[mapX][mapY]) {
                     case 1: color = Color.RED;      break;
@@ -259,6 +266,14 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
             } else {
                 mHeld = keys.get(KeyEvent.VK_M) != null;
             }
+            if (keys.get(KeyEvent.VK_SPACE) != null) {
+                if (jumpCount == 0) {
+                    
+                    posZ += 0.2;
+                }
+            }
+            if (jumpCount > 0 && jumpCount < 10) jumpCount++;
+            gravity: { posZ -= 0.1; if (posZ < 0) posZ = 0; }
             if (keys.get(KeyEvent.VK_ESCAPE) != null) System.exit(0);
             
             ////System.out.printf("Pos: (%f,%f)%n", posX, posY);
