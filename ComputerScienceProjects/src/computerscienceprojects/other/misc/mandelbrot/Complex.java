@@ -84,7 +84,7 @@ public class Complex {
     @Override
     public String toString() {
         
-        return this.real + (this.imag < 0 ? "" : "+") + this.imag;
+        return this.real + (this.imag < 0 ? "" : "+") + this.imag + "i";
     }
     
 }
