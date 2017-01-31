@@ -39,3 +39,7 @@ p. 150
 16. (E) 4
 
 17. (E) Since Solid is abstract and its subclasses are nonabstract, polymorphism no longer applies when these classes are used in a program.
+
+18. (A) It will output the volume of the sphere or box, as intended.
+
+19. (C) IrrationalNumber
