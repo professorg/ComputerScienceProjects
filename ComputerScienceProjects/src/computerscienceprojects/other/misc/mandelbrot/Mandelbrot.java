@@ -21,8 +21,8 @@ import javax.swing.JFrame;
  */
 public class Mandelbrot extends KeyAdapter {
 
-    public static final int SCREEN_WIDTH = 1600;
-    public static final int SCREEN_HEIGHT = 900;
+    public static final int SCREEN_WIDTH = 400;
+    public static final int SCREEN_HEIGHT = 300;
     public static final int MAX_ITERATIONS = 100;
     public static final double DIVERGE = 2.0;
 
@@ -77,7 +77,9 @@ public class Mandelbrot extends KeyAdapter {
                                 
                                 double real = z.getReal();
                                 double imag = z.getImag();
+                                Complex last = z;
                                 z = new Complex(real * real - imag * imag + c.getReal(), 2.0 * real * imag + c.getImag());
+                                // if (Math.abs(z.getReal()) <= Math.abs(last.getReal()) && Math.abs(z.getImag()) <= Math.abs(last.getImag())) break;
                             }
                         }
                         
