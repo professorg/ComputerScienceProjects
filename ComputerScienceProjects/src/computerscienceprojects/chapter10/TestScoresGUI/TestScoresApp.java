@@ -1,9 +1,9 @@
-package eg10_4;
+package computerscienceprojects.chapter10.TestScoresGUI;
 
-public class TestScoresApp{
+public class TestScoresApp {
 
-   public static void main(String[] args){
-      TestScoresModel model = new TestScoresModel();
-      new TestScoresView(model);
-   }
+    public static void main(String[] args) {
+        TestScoresModel model = new TestScoresModel();
+        new TestScoresView(model);
+    }
 }
