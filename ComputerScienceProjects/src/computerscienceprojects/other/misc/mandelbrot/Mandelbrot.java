@@ -100,19 +100,19 @@ public class Mandelbrot extends KeyAdapter {
                     break;
                 }
                 if (keys.get(KeyEvent.VK_D) != null) {
-                    centerX += SCREEN_WIDTH / 2 / zoom;
+                    centerX += SCREEN_WIDTH / 4 / zoom;
                     break;
                 }
                 if (keys.get(KeyEvent.VK_A) != null) {
-                    centerX -= SCREEN_WIDTH / 2 / zoom;
+                    centerX -= SCREEN_WIDTH / 4 / zoom;
                     break;
                 }
                 if (keys.get(KeyEvent.VK_S) != null) {
-                    centerY += SCREEN_HEIGHT / 2 / zoom;
+                    centerY += SCREEN_HEIGHT / 4 / zoom;
                     break;
                 }
                 if (keys.get(KeyEvent.VK_W) != null) {
-                    centerY -= SCREEN_HEIGHT / 2 / zoom;
+                    centerY -= SCREEN_HEIGHT / 4 / zoom;
                     break;
                 }
                 if (keys.get(KeyEvent.VK_ESCAPE) != null) {
