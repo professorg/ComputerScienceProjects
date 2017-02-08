@@ -5,6 +5,7 @@
  */
 package computerscienceprojects.other.misc.gol;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class LifeController {
 
     // 0 - die, 1 - sustain, 2 - born
-    public static int[] RULES = {0, 0, 1, 2, 0, 0, 0, 0};
+    public static int[] RULES = {0, 0, 1, 2, 0, 0, 0, 0, 0};
 
     private Cell[][] grid;
     private int generation;
@@ -22,15 +23,15 @@ public class LifeController {
 
     public LifeController(int sizeX, int sizeY) {
 
-        this.grid = new Cell[sizeX + 2][sizeY + 2];
+        this.grid = new Cell[sizeY + 2][sizeX + 2];
     }
 
     public void start() {
 
         // Populate grid with dead cells.
-        for (int row = 0; row < grid.length; row++) {
-            for (int col = 0; col < grid[row].length; col++) {
-                grid[row][col] = new Cell(false);
+        for (int x = 0; x < grid.length; x++) {
+            for (int y = 0; y < grid[x].length; y++) {
+                grid[x][y] = new Cell();
             }
         }
         
@@ -38,8 +39,24 @@ public class LifeController {
         Scanner scanner = new Scanner(System.in);
         while (populating) {
             
+            System.out.print(toString());
             System.out.print("Toggle point at: ");
             String s = scanner.nextLine();
+            if (s.equalsIgnoreCase("quit") || s.equalsIgnoreCase("exit") || s.equalsIgnoreCase("")) {
+                populating = false;
+                continue;
+            } else if (s.split(" ").length > 0 && s.split(" ")[0].equalsIgnoreCase("random")) {
+                try {
+                    if (s.split(" ").length > 1) {
+                        double threshold = Double.parseDouble(s.split(" ")[1]);
+                        random(threshold);
+                    } else {
+                        random(0.5);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Random threshold must be a double.");
+                }
+            }
             String[] strs = s.replace(" ", "").replace("\t", "").split(",");  // Sanitize and split
             if (strs.length < 2) {
                 System.out.println("Enter points in the form x,y");
@@ -47,9 +64,17 @@ public class LifeController {
             }
             try {
                 int[] coords = {Integer.parseInt(strs[0]), Integer.parseInt(strs[1])};
-            } catch (ArrayIndexOutOfBoundsException e) {
-                
+                if (coords[0] <= 0 || coords[1] <= 0 || coords[0] > grid[0].length - 2 || coords[1] > grid.length - 2) {
+                    throw new ArrayIndexOutOfBoundsException();
+                }
+                Cell c = grid[coords[1]][coords[0]];
+                c.setAliveNext(!c.getAlive());
+                c.update();
+            } catch (NumberFormatException e) {
                 System.out.println("Points must be integers in the form x,y");
+                continue;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Points must be between (1,1) and (" + (grid[0].length - 2) + "," + (grid.length - 2) + ")");
                 continue;
             }
         }
@@ -58,7 +83,7 @@ public class LifeController {
         // Game loop
         while (true) {
 
-            long stop = System.currentTimeMillis() + 1000 / 60;
+            long stop = System.nanoTime() + 1000000000;
             for (int row = 1; row < grid.length - 1; row++) {
                 for (int col = 1; col < grid[row].length - 1; col++) {
                     switch (RULES[getNeighbors(row, col)]) {
@@ -78,8 +103,9 @@ public class LifeController {
                     cell.update();
                 }
             }
-            System.out.print(this);
-            while (System.currentTimeMillis() < stop);  // Lock at 60 per second
+            System.out.println("\nGeneration " + generation + "\n" + this);
+            ++generation;
+            while (System.nanoTime() < stop);  // Lock at 1 per second
         }
     }
 
@@ -95,6 +121,16 @@ public class LifeController {
             }
         }
         return neighbors;
+    }
+    
+    private void random(double threshold) {
+        Random r = new Random();
+        for (int row = 1; row < grid.length-1; row++) {
+            for (int col = 1; col < grid[row].length - 1; col++) {
+                grid[row][col].setAliveNext(r.nextDouble() <= threshold);
+                grid[row][col].update();
+            }
+        }
     }
 
     @Override

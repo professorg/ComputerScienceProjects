@@ -12,6 +12,6 @@ package computerscienceprojects.other.misc.gol;
 public class GameOfLife {
 
     public static void main(String[] args) {
-        new LifeController(50, 50).start();
+        new LifeController(20, 10).start();
     }
 }
