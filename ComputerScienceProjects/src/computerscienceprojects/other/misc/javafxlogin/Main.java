@@ -5,13 +5,13 @@
  */
 package computerscienceprojects.other.misc.javafxlogin;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -199,7 +199,7 @@ public class Main extends Application {
             byte[] b = s.getBytes("UTF-8");
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(b);
-            return Base64.encode(hash);
+            return Base64.getEncoder().encodeToString(hash);
         } catch (Exception e) {
             return "Hashing Error";
         }

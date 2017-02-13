@@ -17,6 +17,10 @@ public class CellularAutomata extends javax.swing.JFrame {
     public CellularAutomata() {
         initComponents();
     }
+    
+    private int rule = 0;
+    private int scroll = 0;
+    private int end = 1;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,6 +122,9 @@ public class CellularAutomata extends javax.swing.JFrame {
             }
         });
 
+        positionSlider.setMaximum(0);
+        positionSlider.setValue(0);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,14 +197,24 @@ public class CellularAutomata extends javax.swing.JFrame {
 
     private void ruleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ruleTextFieldActionPerformed
         // TODO add your handling code here:
+        try {
+            int newrule = Integer.parseInt(evt.getActionCommand());
+            if (newrule > 255) throw new NumberFormatException("Rule must be less than 255");
+            rule = newrule;
+        } catch (NumberFormatException e) {
+            ruleTextField.setText(""+rule);
+        }
     }//GEN-LAST:event_ruleTextFieldActionPerformed
 
     private void rule110ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule110ButtonActionPerformed
         // TODO add your handling code here:
+        rule = 110;
+        ruleTextField.setText("110");
     }//GEN-LAST:event_rule110ButtonActionPerformed
 
     private void topButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topButtonActionPerformed
         // TODO add your handling code here:
+        scroll = 0;
     }//GEN-LAST:event_topButtonActionPerformed
 
     private void stateToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateToggleButtonActionPerformed
@@ -210,14 +227,19 @@ public class CellularAutomata extends javax.swing.JFrame {
 
     private void rule30ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule30ButtonActionPerformed
         // TODO add your handling code here:
+        rule = 30;
+        ruleTextField.setText("30");
     }//GEN-LAST:event_rule30ButtonActionPerformed
 
     private void rule194ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule194ButtonActionPerformed
         // TODO add your handling code here:
+        rule = 194;
+        ruleTextField.setText("194");
     }//GEN-LAST:event_rule194ButtonActionPerformed
 
     private void bottomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottomButtonActionPerformed
         // TODO add your handling code here:
+        scroll = Math.max(0, end-1);
     }//GEN-LAST:event_bottomButtonActionPerformed
 
     /**

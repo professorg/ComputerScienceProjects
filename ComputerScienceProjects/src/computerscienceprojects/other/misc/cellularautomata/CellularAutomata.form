@@ -204,6 +204,10 @@
       </Events>
     </Component>
     <Component class="javax.swing.JSlider" name="positionSlider">
+      <Properties>
+        <Property name="maximum" type="int" value="0"/>
+        <Property name="value" type="int" value="0"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
