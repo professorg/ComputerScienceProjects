@@ -16,15 +16,16 @@ import javax.swing.JPanel;
  */
 public class ImagePanel extends JPanel {
     
-    private BufferedImage img;
+    public BufferedImage img;
     
-    public ImagePanel(BufferedImage img) {
-        
-        this.img = img;
-    }
+//    public ImagePanel(BufferedImage img) {
+//        
+//        this.img = img;
+//    }
     
     public ImagePanel() {
         
+        super();
         this.img = new BufferedImage(256, 256, TYPE_INT_RGB);
     }
     
