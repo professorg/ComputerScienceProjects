@@ -5,6 +5,8 @@
  */
 package computerscienceprojects.other.misc.cellularautomata;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author gvandomelen19
@@ -16,11 +18,18 @@ public class CellularAutomata extends javax.swing.JFrame {
      */
     public CellularAutomata() {
         initComponents();
+        new Thread(this::start).start();
     }
-    
+
+    private boolean[][] left = new boolean[0][];
+    private boolean[][] right = new boolean[0][];
+    private boolean running = false;
+    private boolean cleared = true;
+    private int rowStart = 0;
+    private int colStart = 0;
     private int rule = 0;
-    private boolean[][] left;
-    private boolean[][] right;
+    private int generation = 0;
+    private BufferedImage img;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +48,7 @@ public class CellularAutomata extends javax.swing.JFrame {
         ruleLabel = new javax.swing.JLabel();
         stateToggleButton = new javax.swing.JToggleButton();
         clearButton = new javax.swing.JButton();
-        imagePanel2 = new computerscienceprojects.util.ImagePanel();
+        imagePanel = new computerscienceprojects.util.ImagePanel();
         leftButton = new javax.swing.JButton();
         rightButton = new javax.swing.JButton();
         topButton = new javax.swing.JButton();
@@ -101,16 +110,16 @@ public class CellularAutomata extends javax.swing.JFrame {
             }
         });
 
-        imagePanel2.setPreferredSize(new java.awt.Dimension(256, 256));
+        imagePanel.setPreferredSize(new java.awt.Dimension(256, 256));
 
-        javax.swing.GroupLayout imagePanel2Layout = new javax.swing.GroupLayout(imagePanel2);
-        imagePanel2.setLayout(imagePanel2Layout);
-        imagePanel2Layout.setHorizontalGroup(
-            imagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
+        imagePanel.setLayout(imagePanelLayout);
+        imagePanelLayout.setHorizontalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 256, Short.MAX_VALUE)
         );
-        imagePanel2Layout.setVerticalGroup(
-            imagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        imagePanelLayout.setVerticalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 256, Short.MAX_VALUE)
         );
 
@@ -173,7 +182,7 @@ public class CellularAutomata extends javax.swing.JFrame {
                             .addComponent(stateToggleButton)
                             .addGap(18, 18, 18)
                             .addComponent(clearButton))
-                        .addComponent(imagePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(topButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -182,6 +191,7 @@ public class CellularAutomata extends javax.swing.JFrame {
                     .addComponent(downButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(popularRulesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ruleLabel)
@@ -190,12 +200,9 @@ public class CellularAutomata extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(rule110Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(rule194Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(rule30Button, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ruleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(popularRulesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(rule30Button, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ruleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -221,7 +228,7 @@ public class CellularAutomata extends javax.swing.JFrame {
                             .addComponent(clearButton))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(imagePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(topButton)
                                 .addGap(18, 18, 18)
@@ -244,10 +251,12 @@ public class CellularAutomata extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             int newrule = Integer.parseInt(evt.getActionCommand());
-            if (newrule > 255) throw new NumberFormatException("Rule must be less than 256");
+            if (newrule > 255) {
+                throw new NumberFormatException("Rule must be less than 256");
+            }
             rule = newrule;
         } catch (NumberFormatException e) {
-            ruleTextField.setText(""+rule);
+            ruleTextField.setText("" + rule);
         }
     }//GEN-LAST:event_ruleTextFieldActionPerformed
 
@@ -263,6 +272,8 @@ public class CellularAutomata extends javax.swing.JFrame {
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         // TODO add your handling code here:
+        clear();
+        start();
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void rule30ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule30ButtonActionPerformed
@@ -279,26 +290,33 @@ public class CellularAutomata extends javax.swing.JFrame {
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
         // TODO add your handling code here:
+        colStart++;
+        render();
     }//GEN-LAST:event_rightButtonActionPerformed
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
         // TODO add your handling code here:
+        colStart--;
     }//GEN-LAST:event_leftButtonActionPerformed
 
     private void topButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topButtonActionPerformed
         // TODO add your handling code here:
+        rowStart = 0;
     }//GEN-LAST:event_topButtonActionPerformed
 
     private void bottomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottomButtonActionPerformed
         // TODO add your handling code here:
+        rowStart = 256 - generation;
     }//GEN-LAST:event_bottomButtonActionPerformed
 
     private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
         // TODO add your handling code here:
+        rowStart--;
     }//GEN-LAST:event_upButtonActionPerformed
 
     private void downButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downButtonActionPerformed
         // TODO add your handling code here:
+        rowStart++;
     }//GEN-LAST:event_downButtonActionPerformed
 
     /**
@@ -329,18 +347,43 @@ public class CellularAutomata extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CellularAutomata().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CellularAutomata().setVisible(true);
         });
+    }
+
+    private void start() {
+
+        img = imagePanel.getImage();
+        cleared = false;
+        while (!cleared) {
+            if (running) update();
+        }
+    }
+
+    private void update() {
+        
+    }
+
+    private void render() {
+
+    }
+
+    private void clear() {
+
+        cleared = true;
+        left = new boolean[0][];
+        right = new boolean[0][];
+        rowStart = 0;
+        colStart = 0;
+        generation = 0;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bottomButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton downButton;
-    private computerscienceprojects.util.ImagePanel imagePanel2;
+    private computerscienceprojects.util.ImagePanel imagePanel;
     private javax.swing.JButton leftButton;
     private javax.swing.JLabel popularRulesLabel;
     private javax.swing.JButton rightButton;
