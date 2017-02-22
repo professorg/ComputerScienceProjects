@@ -1,0 +1,22 @@
+Barron's Chapter 3
+p. 160
+#20 - 27
+
+20. (B) HumanPlayer must contain implementations of both the updateDisplay and getMove methods, or be declared as abstract;
+        Correct answer (C)
+
+21. (C) Chess
+
+22. (C) II and III only
+
+23. (D) I and II only
+        Correct answer (E)
+
+24. (A) Point
+
+25. (C)
+        Correct answer (B)
+
+26. (B) I and II only
+
+27. (B) All classes that implement the original SomeName interface will need to be rewritten because they no longer implement SomeName
