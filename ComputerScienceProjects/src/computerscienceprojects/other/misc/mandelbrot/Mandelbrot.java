@@ -11,8 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -77,7 +75,9 @@ public class Mandelbrot extends KeyAdapter {
                                 
                                 double real = z.getReal();
                                 double imag = z.getImag();
+                                Complex last = z;
                                 z = new Complex(real * real - imag * imag + c.getReal(), 2.0 * real * imag + c.getImag());
+                                // if (Math.abs(z.getReal()) <= Math.abs(last.getReal()) && Math.abs(z.getImag()) <= Math.abs(last.getImag())) break;
                             }
                         }
                         

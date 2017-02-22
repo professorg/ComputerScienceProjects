@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package computerscienceprojects.other;
-
-import java.util.ArrayList;
+package computerscienceprojects.other.misc.docsengineershierarchy;
 
 /**
  *
  * @author gvandomelen19
  */
-public class Testing {
-
-    public static void main(String[] args) {
-        
-    }
+public interface Worker {
+    
+    public void work();
+    public void takeABreak();
+    
 }

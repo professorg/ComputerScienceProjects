@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package computerscienceprojects.other;
-
-import java.util.ArrayList;
+package computerscienceprojects.other.misc.gol;
 
 /**
  *
  * @author gvandomelen19
  */
-public class Testing {
+public class GameOfLife {
 
     public static void main(String[] args) {
-        
+        new LifeController(20, 10).start();
     }
 }
