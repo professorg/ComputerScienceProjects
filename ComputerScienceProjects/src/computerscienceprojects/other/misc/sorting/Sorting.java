@@ -13,38 +13,68 @@ public class Sorting {
     
     public static void main(String[] args) {
         
-        int[] a = new int[100000];
+        int[] a = new int[10];
         for (int i = 0; i < a.length; ++i) {
-            a[i] = (int)(Math.random() * Integer.MAX_VALUE);
+            a[i] = (int)(Math.random() * 10);
         }
+        a[a.length-1] = 3;
         System.out.println(toString(a));
         quickSort(a);
         System.out.println(toString(a));
     }
     
     public static void selectionSort(int[] a) {
-        for (int i = 0; i < a.length; ++i) {
+         for (int i = 0; i < a.length; ++i) {
             int minIndex = findMinimum(a,i);
             if (minIndex != i)
                 swap(a, i, minIndex);
         }
     }
     
-    public static void quickSort(int[] a) {
-        if (a.length <= 1) return;
-        int[] left = new int[(int)Math.floor(a.length/2.0)];
-        for (int i = 0; i < left.length; i++) {
-            left[i] = a[i];
+    public static void quickSort(int[]a) {
+        quickSort(a, 0, a.length);
+    }
+    
+    public static void quickSort(int[] a, int start, int end) {
+        if (end - start <= 1)
+            return;
+        System.out.println(toString(a, start, end));
+        int key = a[end-1];
+        int separator = start;
+        for (int i = start; i < end; i++) {
+            System.out.println("i: " + i);
+            if (a[i] <= key) {
+                System.out.printf("SWAP: %d, %d%n", start+i, start+separator);
+                swap(a, i, separator++);
+                System.out.println(toString(a, start, end));
+            } else {
+                System.out.println("SAME: ");
+                System.out.println(toString(a, start, end));
+            }
+            key++;
         }
-        int[] right = new int[(int)Math.ceil(a.length/2.0)];
-        for (int i = left.length + 1; i < a.length; i++) {
-            right[i-left.length] = a[i];
-        }
-        quickSort(left);
-        quickSort(right);
+        quickSort(a, start, separator++);
+        quickSort(a, separator + 1 , end);
+    }
+    
+    public static void insertionSort(int[] a) {
+        int itemToInsert;
+        int j;
+        boolean stillLooking;
         for (int i = 0; i < a.length; ++i) {
-            if (i < left.length) a[i] = left[i];
-            else a[i] = right[i-left.length];
+            itemToInsert = a[i];
+            stillLooking = true;
+            j = i;
+            while ((j <= 0) && stillLooking) {
+                if (itemToInsert <= a[j]) {
+                    
+                    a[j+1] = a[j];
+                    j--;
+                } else {
+                    stillLooking = false;
+                }
+            }
+            a[j+1] = itemToInsert;
         }
     }
     
@@ -63,8 +93,12 @@ public class Sorting {
     }
     
     private static String toString(int[] a) {
+        return toString(a, 0, a.length);
+    }
+    
+    private static String toString(int[] a, int start, int end) {
         String s = "[";
-        for (int i : a) s += i + ", ";
+        for (int i = start; i < end; ++i) s += a[i] + ", ";
         s = s.substring(0, s.length() - 2);
         s += "]";
         return s;
