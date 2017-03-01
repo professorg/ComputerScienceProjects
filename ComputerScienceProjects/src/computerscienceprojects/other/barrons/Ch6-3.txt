@@ -1,0 +1,35 @@
+Barron's Chapter 6
+p. 257
+#7, 8, 19-27
+
+7.  (D) If any particular text file is unexpectedly long, the ArrayList will
+        automatically be resized. The array, by contrast, may go out of bounds.
+
+8.  (E) Accessing all the elements is more efficient in an array than in an
+        ArrayList.
+    Correct:    (A) An array of primitive number types is more efficient to
+                    manipulate than an ArrayList of wrapper objects that contain
+                    numbers.
+
+19. (D) BingoCard[] players = new BingoCard[NUMPLAYERS];
+
+20. (C) III only
+
+21. (B) II only
+
+22. (E) strList.add(intOb = new Integer(5));
+
+23. (B) list.add(6,9);
+
+24. (D) It fails if element is smaller than the first item in list and works in
+        all other cases.
+
+25. (A) 2 3 4 2 1 8
+
+26. (E) for (Coin c : coins)
+        {
+            total += coins.getValue();
+        }
+
+27. (E) I, II, and III
+        Correct:    (D) I and II only
