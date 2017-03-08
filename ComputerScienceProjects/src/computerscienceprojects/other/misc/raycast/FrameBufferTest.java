@@ -32,7 +32,7 @@ public class FrameBufferTest {
         int col = 0;
         while(true) {
             
-            long stop = System.nanoTime() + 1000000 / 60;
+            long stop = System.nanoTime() + 1000000 / 6000;
             
             img.setRGB(x, y, col);
             

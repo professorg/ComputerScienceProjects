@@ -34,7 +34,7 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,5,4,3,2,1,0,0,0,0,0,1},
+        {7,0,0,0,0,5,4,3,2,1,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
@@ -51,12 +51,9 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
         boolean fHeld = false;
         boolean gHeld = false;
         boolean mHeld = false;
-        
-        int jumpCount = 0;
-        
+                
         double posX = 1.5;    // Initial player pos
         double posY = 1.5;
-        double posZ = 0.0;
         double dirX = -1;   // Initial look direction
         double dirY = 0;
         double planeX = 0;  // Camera plane
@@ -103,7 +100,7 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
                 
                 double deltaDistX = Math.sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
                 double deltaDistY = Math.sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
-                double perpWallDist;
+                double perpWallDist = 0;
                 
                 int stepX;
                 int stepY;
@@ -136,11 +133,34 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
                         mapY += stepY;
                         side = 1;
                     }
+                    if (map[mapX][mapY] == 7) {
+                        if (side == 0)  {
+                            perpWallDist += (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
+                            rayPosX = mapX + 1 - stepX;
+                            rayPosY = mapY;
+                        }
+                        else {
+                            perpWallDist += (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
+                            rayPosX = mapX;
+                            rayPosY = mapY + 1 - stepY;
+                        }
+
+                        if (side == 0) {
+                            rayDirX *= -1;
+                            stepX *= -1;
+                            sideDistX = (1 - sideDistX / deltaDistX) * deltaDistX;
+                        } else {
+                            rayDirY *= -1;
+                            stepY *= -1;
+                            sideDistY = (1 - sideDistY / deltaDistY) * deltaDistY;
+                        }
+                        continue;
+                    }
                     if (map[mapX][mapY] > 0) hit = 1;
                 }
                                 
-                if (side == 0)  perpWallDist = (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
-                else            perpWallDist = (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
+                if (side == 0)  perpWallDist += (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
+                else            perpWallDist += (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
                 
                 int lineHeight = (int) (SCREEN_HEIGHT / perpWallDist);
                 
@@ -148,9 +168,6 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
                 
                 int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
                 int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
-                
-                drawStart = (int) (drawStart * (1 - posZ) + SCREEN_HEIGHT / 2 * posZ);
-                drawEnd = (int) (drawEnd * (1 - posZ) + (SCREEN_HEIGHT - 1) * posZ);
                 
                 if (drawStart < 0) drawStart = 0;
                 if (drawEnd >= SCREEN_HEIGHT) drawEnd = SCREEN_HEIGHT - 1;
@@ -266,14 +283,6 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
             } else {
                 mHeld = keys.get(KeyEvent.VK_M) != null;
             }
-            if (keys.get(KeyEvent.VK_SPACE) != null) {
-                if (jumpCount == 0) {
-                    
-                    posZ += 0.2;
-                }
-            }
-            if (jumpCount > 0 && jumpCount < 10) jumpCount++;
-            gravity: { posZ -= 0.1; if (posZ < 0) posZ = 0; }
             if (keys.get(KeyEvent.VK_ESCAPE) != null) System.exit(0);
             
             ////System.out.printf("Pos: (%f,%f)%n", posX, posY);
