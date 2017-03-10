@@ -25,7 +25,7 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,1,0,0,0,0,4,4,4,0,0,0,1},
+        {1,0,0,0,1,0,0,0,0,4,7,4,0,0,0,1},
         {1,0,0,0,1,0,0,0,0,4,0,4,0,0,0,1},
         {1,0,0,0,1,1,0,0,0,4,0,4,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -34,7 +34,7 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {7,0,0,0,0,5,4,3,2,1,0,0,0,0,0,1},
+        {1,0,0,0,0,5,4,3,2,1,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
@@ -101,6 +101,7 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
                 double deltaDistX = Math.sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
                 double deltaDistY = Math.sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
                 double perpWallDist = 0;
+                double lastPerp;
                 
                 int stepX;
                 int stepY;
@@ -134,26 +135,45 @@ public class Raycast extends KeyAdapter {      // Based on @link http://lodev.or
                         side = 1;
                     }
                     if (map[mapX][mapY] == 7) {
-                        if (side == 0)  {
-                            perpWallDist += (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
-                            rayPosX = mapX + 1 - stepX;
-                            rayPosY = mapY;
-                        }
-                        else {
-                            perpWallDist += (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
-                            rayPosX = mapX;
-                            rayPosY = mapY + 1 - stepY;
-                        }
-
+                        
+                        System.out.print(rayPosX + ", " + rayPosY + " > ");
                         if (side == 0) {
+                            lastPerp = (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
+                            perpWallDist += lastPerp;
                             rayDirX *= -1;
                             stepX *= -1;
-                            sideDistX = (1 - sideDistX / deltaDistX) * deltaDistX;
                         } else {
+                            lastPerp = (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
+                            perpWallDist += lastPerp;
                             rayDirY *= -1;
                             stepY *= -1;
-                            sideDistY = (1 - sideDistY / deltaDistY) * deltaDistY;
                         }
+                        double wall;    // Needs to be finished :(
+                        if (side == 0) {
+                            wall = rayPosY + lastPerp * rayDirY;
+                            rayPosY = wall + rayDirY > 0 ? 1 : 0;
+                            rayPosX = mapX + rayDirX > 0 ? 1 : 0;
+                        } else {
+                            wall = rayPosY + lastPerp * rayDirX;
+                            rayPosX = wall + rayDirX > 0 ? 1 : 0;
+                            rayPosY = mapY + rayDirY > 0 ? 1 : 0;
+                        }
+                        
+                        if (rayDirX < 0) {
+                            stepX = -1;
+                            sideDistX = (rayPosX - mapX) * deltaDistX;
+                        } else {
+                            stepX = 1;
+                            sideDistX = (mapX + 1.0 - rayPosX) * deltaDistX;
+                        }
+                        if (rayDirY < 0) {
+                            stepY = -1;
+                            sideDistY = (rayPosY - mapY) * deltaDistY;
+                        } else {
+                            stepY = 1;
+                            sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
+                        }
+                        System.out.println(rayPosX + ", " + rayPosY);
                         continue;
                     }
                     if (map[mapX][mapY] > 0) hit = 1;
