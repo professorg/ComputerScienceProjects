@@ -1,0 +1,46 @@
+Barron's Chapter 7
+p. 308
+#1-21
+
+1.  (D) I and III only
+
+2.  (B) II only
+
+3.  (E) For no string inputs
+
+4.  (D) For all string inputs
+
+5.  (B) 32
+
+6.  (B) 2^n
+
+7.  (B) 14
+
+8.  (D) 2
+
+9.  (E) It returns x[0] or x[n-1], whichever is larger.
+
+10. (B) It prints string s in reverse order.
+
+11. (A) (1 / base) * power(base, expo + 1)
+
+12. (C) 1213121
+
+13. (C) III only
+
+14. (A) 12
+
+15. (E) -4
+
+16. (D) 15
+
+17. (E) 15
+
+18. (A) (15!)/(2!)
+
+19. (C) 365051
+
+20. (B) Interchange the lines writeThreeDigits(n % 1000)
+        and writeWithCommas(n / 1000) in method writeWithCommas.
+
+21. (B)
