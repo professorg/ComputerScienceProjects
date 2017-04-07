@@ -1,0 +1,84 @@
+Computer Science A
+Course Description Free-Response Questions p.44 #1
+AP FRQ #1, 2, 4
+
+Course Description p.44
+
+1.  a.  public int getDuration() {
+            if (flights.size == 0) return 0;
+            return flights.get(0).getDepartureTime()
+                    .minutesUntil(flights.get(flights.size-1));
+        }
+        
+    b.  public int getShortestLayover() {
+            if (flights.size < 2) return -1;
+            int max = 0;
+            for (int i = 0; i < flights.size-2; i++) {
+                max = Math.max(max, flights.get(i).getArrivalTime()
+                        .timeUntil(flights.get(i+1).getDepartureTime();
+            }
+            return max;
+        }
+
+2.  a.  public String apcsReplaceAll(String str, String oldStr, String newStr) {
+            String ret;        
+            for (int i = 0; i < str.length(); i++) {
+                boolean found = true;
+                for (int j = 0; j < oldStr.length(); j++) {
+                    if (str.charAt(j+i) != oldStr.charAt(j)) {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found) {
+                    ret += newStr;
+                    i += oldStr.length();
+                } else {
+                    ret += str.charAt(i);
+                }
+            }
+            return ret;
+        }
+
+    b.  public static String replaceNameNickname(String str, List<Person> people) {
+            String ret = str;
+            for (Person person : people) {
+                ret = apcsReplaceAll(ret, person.getFirstName(), person.getNickname());
+            }
+            return ret;
+        }
+
+4.  a.  public static void shiftArray(int[] arr, int num) {
+            for (int i = arr.length; i > 0; i--) {
+                arr[i] = arr[i-1];
+            }
+            arr[0] = num;
+        }
+
+    b.  public void shiftMatrix(int num) {
+            int oldNum;
+            int nextNum = num;
+            for (int i = 0; i < matrix.length; i++) {
+                oldNum = matrix[i][matrix[i].length-1];
+                ArrayUtil.shiftArray(nextNum);
+                nextNum = oldNum;
+            }
+        }
+
+    c.  public void rotateMatrix() {
+            int num = matrix[matrix.length-1][matrix[0].length-1]'
+            shiftMatrix(num);
+        }
+
+AP FRQ
+
+1.  a.
+public class RandomStringChooser {
+    
+    private int numLeft;
+    private String[] strings;
+
+    public RandomStringChooser(String[] strings) {
+        
+    }
+}
