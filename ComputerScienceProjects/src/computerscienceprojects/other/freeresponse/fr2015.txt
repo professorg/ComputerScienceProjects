@@ -1,0 +1,104 @@
+2015 AP Computer Science Free Response
+
+1.  a.
+    public static int arraySum(int[] arr) {
+        int sum = 0;
+        for (int n : arr) {
+            sum += n;
+        }
+        return sum;
+    }
+
+    b.
+    public static int[] rowSums(int[][] arr2D) {
+        int[] ret = new int[arr2D.length];
+        for (int i = 0; i < arr2D.length; i++) {
+            ret[i] = arraySum(arr2D[i]);
+        }
+        return ret;
+    }
+    
+    c.
+    public static boolean isDiverse(int[][] arr2D) {
+        int[] sums = rowSum(arr2D);
+        for (int i = 0; i < sums.length; i++) {
+            for (int j = i-1; j >= 0; j--) {
+                if (sums[i] == sums[j]) return false;
+            }
+        }
+        return true;
+    }
+
+2.
+    public class HiddenWord {
+
+        private String word;
+
+        public HiddenWord(String word) {
+            this.word = word;
+        }
+
+        public String getHint(String guess) {
+            String hint = "";
+            for (int i = 0; i < guess.length(); i++) {
+                if (guess.charAt(i) == word.charAt(i)) hint += guess.charAt(i);
+                else if (inWord(guess.charAt(i)) hint += '+';
+                else hint += '*';
+            }
+            return hint;
+        }
+
+        private boolean inWord(char c) {
+            for (int i = 0; i < word.length(); i++) {
+                if (word.charAt(i) == c) return true;
+            }
+            return false;
+        }
+    }
+
+3.  a.
+    public int getValueAt(int row, int col) {
+        for (SparseArrayEntry entry : entries) {
+            if (entry.getRow() == row && entry.getCol() == col)
+                return entry.getValue();
+        }
+        return 0;
+    }
+
+    b.
+    public void removeColumn(int col) {
+        numCols--;
+        for (SparseArrayEntry entry : entries) {
+            if (entry.getCol() == col) entries.remove(entry);
+            else if (entry.getCol() > col) {
+                entries.remove(entry);
+                entries.add(new SparseArrayEntry(entry.getRow(), entry.getCol()-1, entry.getValue()));
+            }
+        }
+    }
+
+4.  a.
+    public interface NumberGroup {
+        public boolean contains(int num);
+    }
+
+    b.
+    public class Range implements NumberGroup {
+        private int min;
+        private int max;
+        public NumberGroup(int min, int max) {
+            this.min = min;
+            this.max = max;
+        }
+        public boolean contains(int num) {
+            return (num <= max && num >= min);
+        }
+    }
+
+    c.
+    public boolean contains(int num) {
+        for (NumberGroup group : groupList) {
+            if (group.contains(num)) return true;
+        }
+        return false;
+    }
