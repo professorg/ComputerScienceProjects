@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maze;
+package computerscienceprojects.other.misc.maze;
 
 /**
  *
@@ -40,5 +40,9 @@ public class MazeClient {
                 + ".....S";
         solver = new MazeSolver(maze);
         solver.solve();
+        
+        maze = MazeGenerator.generate(7, 5);
+        solver = new MazeSolver(maze);
+        System.out.println(solver.toString(solver.maze));
     }
 }

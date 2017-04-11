@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maze;
+package computerscienceprojects.other.misc.maze;
 
 /**
  *
@@ -11,7 +11,7 @@ package maze;
  */
 public class MazeSolver {
     
-    private char[][] maze;
+    public char[][] maze;
     private int length;
     private int width;
     
@@ -64,7 +64,6 @@ public class MazeSolver {
         }
         findPath(x, y);
         maze[y][x] = 'S';
-        System.out.println(toString(this.maze));
     }
     
     private boolean findPath(int x, int y) {

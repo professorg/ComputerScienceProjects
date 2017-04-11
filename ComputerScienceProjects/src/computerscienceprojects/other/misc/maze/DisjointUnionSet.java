@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maze;
+package computerscienceprojects.other.misc.maze;
 
 /**
  *
@@ -20,6 +20,7 @@ public class DisjointUnionSet {
         this.n = n;
         this.rank = new int[n];
         this.parent = new int[n];
+        makeSet();
     }
     
     private void makeSet() {
@@ -41,7 +42,7 @@ public class DisjointUnionSet {
         int yRoot = find(y);
         if (xRoot == yRoot) return true;
         if (rank[xRoot] < rank[yRoot]) parent[xRoot] = yRoot;
-        else if (rank[xRoot] > rank[yRoot]) parent[yRoot] = xRoot;
+        else if (rank[yRoot] < rank[xRoot]) parent[yRoot] = xRoot;
         else {
             parent[yRoot] = xRoot;
             rank[xRoot]++;

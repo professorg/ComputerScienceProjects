@@ -1,0 +1,73 @@
+Barron's Chapter 7
+p. 331
+#1-20, 22-25, 27-31, 34-36
+
+1.  (E) I, II, and III
+
+2.  (D) i < n && value != a[i]
+
+3.  (A) length of list.
+        Correct: (C)
+
+4.  (D) I and II only
+        Correct: (B)
+
+5.  (C) When x is very close to the beginning of the array
+
+6.  (E) a[0] holds the largest value in the array
+
+7.  (C) When key is not in the array
+
+8.  (A) 109 89 70 13 42 -3 2
+
+9.  (A) v is sorted smallest to largest
+
+10. (C) a[4] ... a[7]
+
+11. (B) 3
+
+12. (D) 0
+
+13. (A) 4
+
+14. (B) a[low] <= key <= a[high]
+        Correct: (E)
+
+15. (A) 15
+
+16. (A) 9 7 1 5 4 12
+        Correct: (B)
+
+17. (B) 9, 5, 1, 4, 3, 2
+
+18. (E) 3, 2, 1, 0, 9, 6, 5, 4
+        Correct: (A)
+
+19. (D) I and II only
+
+20. (A) I only
+
+22. (C) III only
+
+23. (D) 3, 7, 11,... until any letter in "p"..."s" is encountered.
+
+24. (C) The list is in alphabetical order.
+
+25. (E) sequential search
+
+27. (D) Merge two sorted parts of arr into a single sorted array
+
+28. (B) 10
+
+29. (B) II only
+
+30. (B) 20
+
+31. (C) II III I
+        Correct: (A)
+
+34. (D) 7
+
+35. (A) 100
+
+36. (C) 50

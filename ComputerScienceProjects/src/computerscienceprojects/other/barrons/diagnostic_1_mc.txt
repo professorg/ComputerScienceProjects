@@ -1,0 +1,53 @@
+Barron's Diagnostic Test 1 MC
+p. 6 #1-40
+
+1.  (D)
+2.  (B) // I'm making a note here: this question is pretty questionable; the
+        name of a style shouldn't matter enough to test on the AP test IMO
+3.  (C)
+4.  (A)
+5.  (E)     Correct: B
+6.  (E)
+7.  (A)     Correct: B
+8.  (C)
+9.  (B)
+10. (A)
+11. (C)
+12. (B)
+13. (B)     Correct: A  // I didn't see the implementation for increment() :/
+14. (A)
+15. (E)
+16. (C)
+17. (A)
+18. (E)
+19. (A)
+20. (E)
+21. (B)
+22. (B)     Correct: E  // Oops. Thought c2 was labeled ClassTwo...
+23. (D)
+24. (E)
+25. (A)
+26. (E)     Correct: C  // Didn't see the precondition. Note to self: read close
+27. (C)     Correct: D
+28. (C)     Correct: B
+29. (A)
+30. (A)
+31. (A)
+32. (B)     Correct: C  // Researched composition & encapsulation understand now
+33. (E)
+34. (D)
+35. (D)     Correct: E
+36. (C)
+37. (B)
+38. (A)
+39. (C)     Correct: E  // Huh. I never though about that, to be honest
+40. (E)     Correct: D  // Thought it was changing one array :/
+
+/*  Note to self: Read all the problems more closely; some implementations might
+    not be the way I would do it, but I still need to read closely.
+
+    If I had more time to do this I would probably /actually/ trace the
+    programs, but I choose not to, because I know I can and it takes long enough
+    that I would rather not waste my time and should just guess on things like
+    number of iterations or output of recursive/iterative functions.
+*/
