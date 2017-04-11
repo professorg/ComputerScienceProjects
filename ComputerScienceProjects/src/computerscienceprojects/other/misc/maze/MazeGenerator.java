@@ -11,16 +11,17 @@ package computerscienceprojects.other.misc.maze;
  */
 public class MazeGenerator {
     
-    public static String generate(int w, int h) {
+    public static String generate(int vW, int vH) {
         
-        StringBuilder str = new StringBuilder(w + " " + h + " ");
+        int w = vW*2+1;
+        int h = vH*2+1;
+        int headerlen = (h + " " + w + " ").length();
+        StringBuilder str = new StringBuilder(h + " " + w + " ");
         for (int i = 0; i < w*h; i++) {     // Create string
             if (i % w == 0 || i % w == w-1 || i / w == 0 || i / w == h - 1) str.append('#');
             else if ((i % w) % 2 == 1 && (i / w) % 2 == 1) str.append('.');
             else str.append('#');
         }
-        int vW = (w-1)/2;
-        int vH = (h-1)/2;
         int size = vW * vH;     // Number of vertices
         int numEdges = (vW-1)*(vH-1)*2 + vW + vH - 2;       // Number of edges
         int[] edges = new int[numEdges*2];
@@ -55,6 +56,8 @@ public class MazeGenerator {
                 str.setCharAt(index, '.');
             }
         }
+        str.setCharAt(headerlen+1, 'S');
+        str.setCharAt(headerlen+(w-2)+w*(h-1), 'G');
         return str.toString();
     }
     

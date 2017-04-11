@@ -13,36 +13,8 @@ public class MazeClient {
     
     public static void main(String[] args) {
         
-        String maze = "6 6 "
-                + "#S#..#"
-                + "#...##"
-                + "..#..."
-                + ".#..#."
-                + "###.#."
-                + "#...#G";
+        String maze = MazeGenerator.generate(200, 200);
         MazeSolver solver = new MazeSolver(maze);
         solver.solve();
-        maze = "6 6 "
-                + "###..#"
-                + "#..S##"
-                + "..#..."
-                + ".#..#."
-                + "###.#."
-                + "G#..#.";
-        solver = new MazeSolver(maze);
-        solver.solve();
-        maze = "6 6 "
-                + "G....."
-                + "......"
-                + "......"
-                + "......"
-                + "......"
-                + ".....S";
-        solver = new MazeSolver(maze);
-        solver.solve();
-        
-        maze = MazeGenerator.generate(7, 5);
-        solver = new MazeSolver(maze);
-        System.out.println(solver.toString(solver.maze));
     }
 }
