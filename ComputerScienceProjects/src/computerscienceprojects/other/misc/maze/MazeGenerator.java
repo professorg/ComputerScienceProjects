@@ -5,8 +5,6 @@
  */
 package computerscienceprojects.other.misc.maze;
 
-import computerscienceprojects.other.misc.maze.DisjointUnionSet;
-
 /**
  *
  * @author gvandomelen19
