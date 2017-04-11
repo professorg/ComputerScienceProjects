@@ -27,12 +27,12 @@ public class MazeGenerator {
         int numEdges = (vW-1)*(vH-1)*2 + vW + vH - 2;       // Number of edges
         int[] edges = new int[numEdges*2];
         for (int i = 0; i < numEdges; i++) {
-            if (i < vW*(vH-1)) {        // Edges stored in array
+            if (i < vH*(vW-1)) {        // Edges stored in array
                 edges[2*i + 0] = (i/(vW-1)) + i;        // {..., vertex 1, vertex 2, ...}
                 edges[2*i + 1] = (i/(vW-1)) + i + 1;    //  Index:  ^even     ^odd
             } else {
-                edges[2*i + 0] = i - vW*(vH-1);
-                edges[2*i + 1] = i + vW - vW*(vH-1);
+                edges[2*i + 0] = i - vH*(vW-1);
+                edges[2*i + 1] = i + vW - vH*(vW-1);
             }
             // System.out.println(edges[2*i+0] + ", " + edges[2*i+1]);
         }
