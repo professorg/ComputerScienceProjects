@@ -42,7 +42,7 @@ public class MazeGenerator {
                                     // but keep each pair of vertices together
         // printBlockArr(edges,2);
         DisjointUnionSet dus = new DisjointUnionSet(size);  // Store vertices
-        for (int i = 0; i < numEdges; i+=2) {
+        for (int i = 0; i < numEdges*2; i+=2) {
             // System.out.println(edges[i] + ", " + edges[i+1]);
             if (!dus.union(edges[i], edges[i+1])) {     // Edges not already unioned
                 int x,y;
