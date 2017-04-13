@@ -13,8 +13,12 @@ public class MazeClient {
     
     public static void main(String[] args) {
         
-        String maze = MazeGenerator.generate(200, 200);
-        MazeSolver solver = new MazeSolver(maze);
-        solver.solve();
+        String maze;
+        MazeSolver solver;
+        for (int i = 0; i < 100; i++) {
+            maze = MazeGenerator.generate(500, 500);
+            solver = new MazeSolver(maze);
+            solver.solve();
+        }
     }
 }

@@ -6,6 +6,10 @@
 package computerscienceprojects.other.misc.maze;
 
 import static computerscienceprojects.util.TerminalColors.*;
+import java.awt.image.BufferedImage;
+import static java.awt.image.BufferedImage.TYPE_INT_RGB;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -16,13 +20,19 @@ public class MazeSolver {
     public char[][] maze;
     private int length;
     private int width;
-    private final boolean COLOR = true;
+    private static long ID;
+    private static final boolean COLOR = true;
+    private static final String DIR = "mazes/";
+    private static final String FILE = "maze";
+    private static final String EXT = ".png";
+    private static final int MODE = 1;
 
     public MazeSolver(String maze) {    // <num> <num> <maze>
 
         this.maze = fromString(maze);
         this.length = this.maze.length;
         this.width = this.maze[0].length;
+        ID++;
     }
 
     private char[][] fromString(String s) {
@@ -38,6 +48,49 @@ public class MazeSolver {
             }
         }
         return maze;
+    }
+
+    public void save(char[][] maze, boolean solved) {
+
+        BufferedImage img = new BufferedImage(width, length, TYPE_INT_RGB);
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                switch (maze[i][j]) {
+                    case '+':
+                        img.setRGB(i, j, 0x00FF00);
+                        break;
+                    case 'x':
+                        img.setRGB(i, j, 0xFF0000);
+                        break;
+                    case '#':
+                        img.setRGB(i, j, 0x000000);
+                        break;
+                    case '.':
+                        img.setRGB(i, j, 0xFFFFFF);
+                        break;
+                    case 'S':
+                        img.setRGB(i, j, 0xFFFF00);
+                        break;
+                    case 'G':
+                        img.setRGB(i, j, 0xFF00FF);
+                        break;
+                    default:
+                        img.setRGB(i, j, 0xFFFFFF);
+                        break;
+                }
+            }
+        }
+        try {
+            File outputFile = new File(DIR+ (solved ? "solved/" : "unsolved/") +FILE+EXT);
+            File dir = new File(DIR + (solved ? "solved/" : "unsolved/"));
+            if (!dir.exists()) dir.mkdirs();
+            if (outputFile.exists()) {
+                outputFile.renameTo(new File(DIR + (solved ? "solved/" : "unsolved/") + FILE + "_" + ID + EXT));
+            }
+            ImageIO.write(img, "png", outputFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String toString(char[][] maze) {
@@ -69,6 +122,33 @@ public class MazeSolver {
         return s;
     }
 
+    public void printString(char[][] maze) {
+
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                if (COLOR) {
+                    switch (maze[i][j]) {
+                        case '+':
+                            System.out.print(BG_GREEN.getCol() + maze[i][j] + RESET.getCol());
+                            break;
+                        case 'x':
+                            System.out.print(BG_RED.getCol() + maze[i][j] + RESET.getCol());
+                            break;
+                        case '#':
+                            System.out.print(BG_BLUE.getCol() + maze[i][j] + RESET.getCol());
+                            break;
+                        default:
+                            System.out.print(maze[i][j]);
+                            break;
+                    }
+                } else {
+                    System.out.print(maze[i][j]);
+                }
+            }
+            System.out.println("");
+        }
+    }
+
     public void solve() {
 
         int x = -1;
@@ -84,9 +164,23 @@ public class MazeSolver {
                 break;
             }
         }
+        save(this.maze, false);
+        System.out.print("Solving...");
         findPath(x, y);
+        System.out.println("Done");
         maze[y][x] = 'S';
-        System.out.println(toString(this.maze));
+        System.out.print("Writing...");
+        switch (MODE) {
+            case 0:
+                printString(this.maze);
+                break;
+            case 1:
+                save(this.maze, true);
+                break;
+        }
+        System.out.println("Done");
+        //printString(this.maze);
+        //System.out.println(toString(this.maze));
     }
 
     private boolean findPath(int x, int y) {
