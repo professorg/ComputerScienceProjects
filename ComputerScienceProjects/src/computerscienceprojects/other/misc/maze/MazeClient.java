@@ -15,10 +15,10 @@ public class MazeClient {
         
         String maze;
         MazeSolver solver;
-        for (int i = 0; i < 100; i++) {
-            maze = MazeGenerator.generate(500, 500);
-            solver = new MazeSolver(maze);
-            solver.solve();
-        }
+        maze = MazeGenerator.generate(500, 500);
+        solver = new MazeSolver(maze);
+        solver.show(solver.maze);
+        solver.solve();
+        solver.show(solver.maze);
     }
 }

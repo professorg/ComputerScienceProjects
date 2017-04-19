@@ -20,6 +20,7 @@ public class ImagePanel extends JPanel {
     public ImagePanel(BufferedImage img) {
         
         this.img = img;
+        this.setSize(img.getWidth(), img.getHeight());
     }
     
     @Override

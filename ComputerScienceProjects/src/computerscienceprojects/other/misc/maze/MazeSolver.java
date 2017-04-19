@@ -5,11 +5,13 @@
  */
 package computerscienceprojects.other.misc.maze;
 
+import computerscienceprojects.other.misc.raycast.ImagePanel;
 import static computerscienceprojects.util.TerminalColors.*;
 import java.awt.image.BufferedImage;
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 import java.io.File;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 
 /**
  *
@@ -48,6 +50,44 @@ public class MazeSolver {
             }
         }
         return maze;
+    }
+    
+    public void show(char[][] maze) {
+        
+        BufferedImage img = new BufferedImage(width, length, TYPE_INT_RGB);
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                switch (maze[i][j]) {
+                    case '+':
+                        img.setRGB(i, j, 0x00FF00);
+                        break;
+                    case 'x':
+                        img.setRGB(i, j, 0xFF0000);
+                        break;
+                    case '#':
+                        img.setRGB(i, j, 0x000000);
+                        break;
+                    case '.':
+                        img.setRGB(i, j, 0xFFFFFF);
+                        break;
+                    case 'S':
+                        img.setRGB(i, j, 0xFFFF00);
+                        break;
+                    case 'G':
+                        img.setRGB(i, j, 0xFF00FF);
+                        break;
+                    default:
+                        img.setRGB(i, j, 0xFFFFFF);
+                        break;
+                }
+            }
+        }
+        JFrame frame = new JFrame();
+        frame.getContentPane().add(new ImagePanel(img));
+        frame.setResizable(false);
+        frame.setSize(width, length);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 
     public void save(char[][] maze, boolean solved) {
@@ -170,14 +210,14 @@ public class MazeSolver {
         System.out.println("Done");
         maze[y][x] = 'S';
         System.out.print("Writing...");
-        switch (MODE) {
-            case 0:
-                printString(this.maze);
-                break;
-            case 1:
-                save(this.maze, true);
-                break;
-        }
+//        switch (MODE) {
+//            case 0:
+//                printString(this.maze);
+//                break;
+//            case 1:
+//                save(this.maze, true);
+//                break;
+//        }
         System.out.println("Done");
         //printString(this.maze);
         //System.out.println(toString(this.maze));
