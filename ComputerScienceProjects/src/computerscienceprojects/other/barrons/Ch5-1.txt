@@ -1,0 +1,30 @@
+Barron's Chapter 5
+p. 221
+#1-21
+
+1.  (E)
+2.  (B) Correct: (D)
+3.  (E)
+4.  (E)
+5.  (B)
+6.  (C)
+7.  (C)
+8.  (A)
+9.  (D)
+10. (A)
+11. (A)
+12. (D)
+13. (C) Really, A, B, and C are all correct assertions...
+        if 3 <= i <= n (C), 0 <= i <= n (B) and 1 <= i <= n (A) by extension
+14. (D)
+15. (D)
+16. (C)
+17. (A) Correct: (B)    A Car wouldn't have direct access to Vehicle's private
+                        instance variables...right? I think that's a worse
+                        choice than having Tire extend Circle...
+18. (E)
+19. (D)
+20. (B) Correct: (A)    Shouldn't a grid point store whether it's empty?
+                        That's a much better option than having the point move
+                        itself.
+21. (E)

@@ -58,6 +58,10 @@ public class Sorting {
             }
         }
     }
+    
+    public static void shellSort(int[] a) {
+        int h = 1 << (int)Math.floor(Math.log(a.length)/Math.log(2));
+    }
 
     public static void quickSort(int[] a) {
         quickSort(a, 0, a.length);
