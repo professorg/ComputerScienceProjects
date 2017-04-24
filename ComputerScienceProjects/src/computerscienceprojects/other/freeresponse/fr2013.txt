@@ -1,0 +1,99 @@
+2015 AP Computer Science Free Response
+
+1.  a.
+    public DownloadInfo getDownloadInfo(String title) {
+        for (DownloadInfo i : downloadList) {
+            if (i.getTitle().equals(title)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    b.
+    public void updateDownloads(List<String> titles) {
+        for (String title : titles) {
+            boolean found = false;
+            for (DownloadInfo info : downloadList) {
+                if (title.equals(info.getTitle())) {
+                    info.incrementTimesDownloaded();
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                downloadList.add(new DownloadInfo(title));
+            }
+        }
+    }
+
+2.  a.
+    public TokenPass(int playerCount) {
+        board = new int[playerCount];
+        for (int i = 0; i < playerCount; i++) {
+            board[i] = (int)(Math.random()*playerCount);
+        }
+        currentPlayer = (int)(Math.random()*playerCount);
+    }
+
+    b.
+    public void distributeCurrentPlayerTokens() {
+        int num = board[currentPlayer];
+        board[currentPlayer] = 0;
+        int pos = currentPlayer+1;
+        for (int i = 0; i < num; i++) {
+            pos %= board.length;
+            board[pos++]++;
+        }
+    }
+
+3.  a.
+    public static ArrayList<Location> getEmptyLocations(Grid<Actor> grid) {
+        List<Location> emptyLocations = new ArrayList<Location>();
+        if (grid.getNumRows() < 0 || grid.getNumCols() < 0) return emptyLocations;
+        for (int i = 0; i < grid.getNumRows(); i++) {
+            for (int j = 0; j < grid.getNumCols(); j++) {
+                if (grid.get(new Location(i, j)) == null) emptyLocations.add(new Location(i,j));
+            }
+        }
+    }
+
+    b.
+    class JumpingCritter extends Critter {
+        
+        @Override
+        public ArrayList<Location> getMoveLocations() {
+            return GridWorldUtilities.getEmptyLocations(getGrid());
+        }
+    }
+
+4.  a.
+    public SkyView(int numRows, int numCols, double[] scanned) {
+        view = new int[numRows][numCols];
+        int row = 0;
+        int col = 0;
+        for (int i = 0; i < scanned.length; i++) {
+            if (row >= numRows) {
+                row = 0;
+                col++;
+            }
+            view[row][col] = scanned[i];
+            row++;
+        }
+    }
+
+    b.  
+    public double getAverage(int startRow, int endRow, int startCol, int endCol) {
+        int row = startRow;
+        int col = startCol;
+        double sum = 0;
+        while (row <= endRow && col <= endCol) {
+            if (row > endRow) {
+                row = startRow;
+                col++;
+            }
+            sum += view[row][col];
+            row++;
+        }
+        return sum / ((endRow-startRow+1)*(endCol-startCol+1));
+    }
