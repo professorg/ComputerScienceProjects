@@ -148,8 +148,9 @@ public class Main extends Application {
                 }
             }
             FileWriter fw = new FileWriter(f, true);
+            String salt = Double.toHexString(Math.random());
             writer = new PrintWriter(fw);
-            writer.println(username + ":" + hash(password));
+            writer.println(username + ":" + hash(password, salt) + ":" + salt);
             writer.close();
             return "Register successful.";
         } catch (IOException e) {
@@ -181,7 +182,7 @@ public class Main extends Application {
             String[] s = scanner.nextLine().split(":");
             if (s[0].equalsIgnoreCase(username)) {
 
-                if (s[1].equals(hash(password))) {
+                if (s[1].equals(hash(password, s[2]))) {
 
                     scanner.close();
                     return "Login Successful!";
@@ -205,7 +206,7 @@ public class Main extends Application {
         }
     }
 
-    private String hash(String s, String salt) {
+    private static String hash(String s, String salt) {
 
         return hash(s + salt);
     }
